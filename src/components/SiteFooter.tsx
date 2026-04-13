@@ -7,13 +7,13 @@ export default async function SiteFooter() {
 
   return (
     <footer className="border-t border-slate-900/10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-slate-200">
-      <div className="mx-auto max-w-7xl px-4 py-16">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:py-14 md:py-16">
         <div className="grid gap-8 md:grid-cols-4">
           <div className="md:col-span-1">
             <div className="text-base font-semibold text-white">
               {BRAND.name}
             </div>
-            <div className="mt-4 text-sm text-slate-300 leading-relaxed">
+            <div className="mt-4 break-words text-sm leading-relaxed text-slate-300">
               Thiết kế, gia công và thi công cổng cửa theo nhu cầu thực tế. Nhận
               tư vấn và báo giá nhanh.
             </div>
@@ -91,7 +91,7 @@ export default async function SiteFooter() {
 
           <div>
             <div className="text-sm font-semibold text-slate-100">Liên hệ</div>
-            <div className="mt-3 space-y-2 text-sm text-slate-300">
+            <div className="mt-3 space-y-2 break-words text-sm text-slate-300">
               <div>
                 <span className="font-medium text-slate-100">SĐT:</span>{" "}
                 <a

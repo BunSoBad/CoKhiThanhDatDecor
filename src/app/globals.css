@@ -74,12 +74,14 @@ select {
     transform 0.24s ease;
 }
 
-.soft-hover:hover,
-.btn-primary:hover,
-.btn-secondary:hover,
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-soft);
+@media (hover: hover) and (pointer: fine) {
+  .soft-hover:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
 }
 
 .soft-hover:active,
@@ -378,6 +380,27 @@ select {
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 1);
   border-color: rgba(148, 163, 184, 0.5);
+}
+
+@media (max-width: 768px) {
+  .hero-panel {
+    border-radius: 24px;
+    padding: 0.9rem;
+  }
+
+  .section-lux {
+    border-radius: 1.5rem;
+  }
+
+  .showcase-strip {
+    border-radius: 1.1rem;
+    min-height: min(64vw, 320px);
+  }
+
+  .highlight-pill {
+    font-size: 0.76rem;
+    padding: 0.45rem 0.75rem;
+  }
 }
 
 body {

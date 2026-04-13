@@ -17,7 +17,7 @@ export default function SectionTitle({
   return (
     <div className={`flex flex-col gap-3 ${wrap}`}>
       {kicker ? (
-        <div className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 sm:text-xs sm:tracking-[0.28em]">
           {kicker}
         </div>
       ) : null}

@@ -52,8 +52,8 @@ export default async function Home() {
         <div className="hero-spot two animate-float animation-delay-2000" />
         <div className="hero-spot three animate-float animation-delay-4000" />
 
-        <div className="home-hero-grid mx-auto max-w-6.5xl px-38 py-5 md:py-1 animate-slide-up">
-          <div className="grid gap-10 md:grid-cols-2 md:items-center">
+        <div className="home-hero-grid mx-auto max-w-7xl px-4 py-6 sm:px-6 md:py-2 lg:px-8 animate-slide-up">
+          <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-10">
             <div className="space-y-6">
               <div className="highlight-pill">
                 <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
@@ -188,7 +188,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="relative mx-auto max-w-7.5xl px-8 py-7 md:py-8">
+      <section className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 md:py-8 lg:px-8">
         <div className="showcase-strip">
           <img
             src="/img/background.jpg"
@@ -211,10 +211,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-10xl px-0.1 py-12 md:py-5">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-5 lg:px-8">
         <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_32px_42px_rgba(15,23,42,0.08)]">
           <div className="grid gap-0 md:grid-cols-4">
-            <div className="relative flex min-h-[260px] items-center justify-center bg-slate-100 p-3 md:col-span-3 md:min-h-[360px]">
+            <div className="relative flex min-h-[220px] items-center justify-center bg-slate-100 p-3 sm:min-h-[260px] md:col-span-3 md:min-h-[360px]">
               <img
                 src="/img/banner.png"
                 alt="Motor SUB 220 Quiko Made in Italy"
@@ -222,7 +222,7 @@ export default async function Home() {
               />
             </div>
             <div className="flex flex-col justify-center p-6 sm:p-8 md:col-span-1 md:p-7">
-              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-500">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-500 sm:text-xs sm:tracking-[0.22em]">
                 Motor sử dụng
               </div>
               <h3 className="mt-3 text-xl font-bold leading-tight tracking-tight text-slate-950 md:text-2xl">

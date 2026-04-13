@@ -50,7 +50,8 @@ export default function ProjectCard({
       ? "text-lg font-bold tracking-tight transition-colors duration-200 hover:!text-amber-500 sm:text-xl"
       : "text-base font-bold tracking-tight transition-colors duration-200 hover:!text-amber-500 sm:text-lg";
 
-  const cardMinHeight = variant === "wide" ? "min-h-[26rem]" : "min-h-[34rem]";
+  const cardMinHeight =
+    variant === "wide" ? "min-h-[22rem] sm:min-h-[26rem]" : "min-h-[26rem] md:min-h-[34rem]";
   const paddingClass = variant === "wide" ? "p-4 sm:p-5" : "p-3 sm:p-4";
 
   return (

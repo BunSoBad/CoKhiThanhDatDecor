@@ -52,7 +52,8 @@ export default function ProductCard({
       ? "text-lg font-semibold text-slate-950 transition-colors duration-200 hover:text-amber-500 sm:text-xl"
       : "text-base font-semibold text-slate-950 transition-colors duration-200 hover:text-amber-500 sm:text-lg";
 
-  const cardMinHeight = variant === "wide" ? "min-h-[28rem]" : "min-h-[36rem]";
+  const cardMinHeight =
+    variant === "wide" ? "min-h-[24rem] sm:min-h-[28rem]" : "min-h-[28rem] md:min-h-[36rem]";
   const paddingClass = variant === "wide" ? "p-4 sm:p-5" : "p-3 sm:p-4";
 
   return (
