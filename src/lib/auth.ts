@@ -24,5 +24,9 @@ export function isValidAdminToken(token: string | undefined): boolean {
 export async function verifyAdminToken(): Promise<boolean> {
   const cookieStore = await cookies();
   const token = cookieStore.get("admin_token")?.value;
-  return isValidAdminToken(token);
+  const isValid = isValidAdminToken(token);
+  if (!isValid) {
+    console.error("[auth] Token invalid. ADMIN_PASSWORD config:", !!process.env.ADMIN_PASSWORD);
+  }
+  return isValid;
 }

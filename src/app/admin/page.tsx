@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { BRAND } from "@/lib/brand";
 import {
   getQuoteRequests,
@@ -7,7 +8,9 @@ import {
   QuoteRequestLite,
 } from "@/lib/data";
 import SectionTitle from "@/components/SectionTitle";
+import { verifyAdminToken } from "@/lib/auth";
 import { AdminQuoteActions } from "./AdminQuoteActions";
+import { AdminLogoutButton } from "./AdminLogoutButton";
 import { AdminProductsPanel } from "./AdminProductsPanel";
 import { AdminProjectsPanel } from "./AdminProjectsPanel";
 
@@ -60,6 +63,11 @@ function AdminRow({ request }: { request: QuoteRequestLite }) {
 }
 
 export default async function AdminPage() {
+  const isAdmin = await verifyAdminToken();
+  if (!isAdmin) {
+    redirect("/admin/login");
+  }
+
   const [quoteRequests, dbProducts, dbProjects] = await Promise.all([
     getQuoteRequests(),
     listProductsForAdmin(),
@@ -74,12 +82,7 @@ export default async function AdminPage() {
           title="Trang quản trị"
           description="Theo dõi yêu cầu báo giá và nhập sản phẩm / dự án (ảnh + nội dung) để hiển thị trên trang chủ khi bật chế độ nổi bật."
         />
-        <Link
-          href="/api/admin/logout"
-          className="inline-flex items-center rounded-lg border border-slate-300 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-white"
-        >
-          Đăng xuất
-        </Link>
+        <AdminLogoutButton />
       </div>
 
       <div className="admin-card mt-6 overflow-x-auto rounded-2xl border border-slate-200/90 bg-white shadow-sm">

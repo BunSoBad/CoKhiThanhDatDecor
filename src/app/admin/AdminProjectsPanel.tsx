@@ -55,13 +55,17 @@ export function AdminProjectsPanel({
       credentials: "include",
       body: fd,
     });
-    const data = (await res.json()) as {
+    const data = (await res.json().catch(() => null)) as {
       ok?: boolean;
       url?: string;
       error?: string;
-    };
-    if (!res.ok || !data.url) {
-      throw new Error(data.error ?? "Upload thất bại");
+    } | null;
+    if (!res.ok || !data?.url) {
+      if (res.status === 401) {
+        window.location.href = "/admin/login";
+        throw new Error("Chưa đăng nhập admin. Vui lòng đăng nhập lại.");
+      }
+      throw new Error(data?.error ?? "Upload thất bại");
     }
     return data.url;
   }
@@ -130,9 +134,17 @@ export function AdminProjectsPanel({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
+      const data = (await res.json().catch(() => null)) as {
+        ok?: boolean;
+        error?: string;
+      } | null;
       if (!res.ok) {
-        setError(data.error ?? "Lưu thất bại");
+        if (res.status === 401) {
+          setError("Chưa đăng nhập admin. Vui lòng đăng nhập lại.");
+          window.location.href = "/admin/login";
+          return;
+        }
+        setError(data?.error ?? "Lưu thất bại");
         return;
       }
       resetForm();
@@ -153,9 +165,17 @@ export function AdminProjectsPanel({
         method: "DELETE",
         credentials: "include",
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
+      const data = (await res.json().catch(() => null)) as {
+        ok?: boolean;
+        error?: string;
+      } | null;
       if (!res.ok) {
-        setError(data.error ?? "Xóa thất bại");
+        if (res.status === 401) {
+          setError("Chưa đăng nhập admin. Vui lòng đăng nhập lại.");
+          window.location.href = "/admin/login";
+          return;
+        }
+        setError(data?.error ?? "Xóa thất bại");
         return;
       }
       if (editingId === id) resetForm();

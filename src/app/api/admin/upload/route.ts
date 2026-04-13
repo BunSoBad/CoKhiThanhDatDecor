@@ -39,7 +39,10 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    const blobEnvToken =
+      process.env.BLOB_READ_WRITE_TOKEN ||
+      process.env.NEXT_PUBLIC_BLOB_READ_WRITE_TOKEN;
+    if (!blobEnvToken) {
       return NextResponse.json(
         {
           ok: false,
@@ -49,6 +52,7 @@ export async function POST(req: Request) {
         { status: 500 },
       );
     }
+    process.env.BLOB_READ_WRITE_TOKEN = blobEnvToken;
 
     const ext =
       path.extname(file.name) ||

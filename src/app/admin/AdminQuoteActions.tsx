@@ -27,10 +27,18 @@ export function AdminQuoteActions({
         method: "DELETE",
         credentials: "include",
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
+      const data = (await res.json().catch(() => null)) as {
+        ok?: boolean;
+        error?: string;
+      } | null;
 
       if (!res.ok) {
-        setError(data.error ?? "Xóa thất bại");
+        if (res.status === 401) {
+          setError("Chưa đăng nhập admin. Vui lòng đăng nhập lại.");
+          window.location.href = "/admin/login";
+          return;
+        }
+        setError(data?.error ?? "Xóa thất bại");
         return;
       }
 
@@ -56,10 +64,18 @@ export function AdminQuoteActions({
         },
         body: JSON.stringify({ status: newStatus }),
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
+      const data = (await res.json().catch(() => null)) as {
+        ok?: boolean;
+        error?: string;
+      } | null;
 
       if (!res.ok) {
-        setError(data.error ?? "Cập nhật thất bại");
+        if (res.status === 401) {
+          setError("Chưa đăng nhập admin. Vui lòng đăng nhập lại.");
+          window.location.href = "/admin/login";
+          return;
+        }
+        setError(data?.error ?? "Cập nhật thất bại");
         return;
       }
 
