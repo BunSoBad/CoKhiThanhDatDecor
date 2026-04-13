@@ -587,10 +587,10 @@ const FALLBACK_PRODUCTS: ProductLite[] = [
       "Cổng mở cánh tự động với hệ truyền động và cảm biến an toàn. Tùy theo bề rộng và vật liệu cổng, chúng tôi sẽ đề xuất cấu hình phù hợp để đảm bảo hiệu suất.",
     heroImageUrl: "/img/101.jpg",
     galleryImageUrls: [
-      "/img/1_1.jpg",
-      "/img/1_2.jpg",
-      "/img/1_3.jpg",
-      "/img/1_4.jpg",
+      "/img/101_1.jpg",
+      "/img/101_2.jpg",
+      "/img/101_3.jpg",
+      "/img/101_4.jpg",
     ],
     attributes: {
       "Ứng dụng": "Nhà ở / xưởng",
@@ -608,7 +608,12 @@ const FALLBACK_PRODUCTS: ProductLite[] = [
     description:
       "Giải pháp cổng trượt tự động cho mặt tiền nhà ở: thiết kế gọn gàng, vận hành ổn định theo thời gian. Quý khách vui lòng cung cấp kích thước để chúng tôi tư vấn cấu hình phù hợp.",
     heroImageUrl: "/img/102.jpg",
-    galleryImageUrls: ["/img/102_1.jpg"],
+    galleryImageUrls: [
+      "/img/102_1.jpg",
+      "/img/102_2.jpg",
+      "/img/102_3.jpg",
+      "/img/102_4.jpg",
+    ],
     attributes: {
       "Ứng dụng": "Biệt thự / nhà phố",
       "Gợi ý vật liệu": "Inox / thép sơn tĩnh điện",
@@ -628,16 +633,12 @@ const FALLBACK_PRODUCTS: ProductLite[] = [
     heroImageUrl: "/img/103.jpg",
     galleryImageUrls: [
       "/img/103_1.jpg",
-      "/img/103_2.jpg",
-      "/img/103_3.jpg",
       "/img/103_4.jpg",
-      "/img/103_5.jpg",
       "/img/103_6.jpg",
       "/img/103_7.jpg",
       "/img/103_8.jpg",
       "/img/103_9.jpg",
       "/img/103_10.jpg",
-      "/img/103_11.jpg",
       "/img/103_12.jpg",
     ],
     attributes: {
