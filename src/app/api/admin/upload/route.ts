@@ -1,23 +1,12 @@
 import path from "path";
-import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
+import { NextResponse } from "next/server";
 import { verifyAdminToken } from "@/lib/auth";
 
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function POST(req: Request) {
   try {
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "Thiếu cấu hình BLOB_READ_WRITE_TOKEN trên môi trường deploy",
-        },
-        { status: 500 },
-      );
-    }
-
     const isAdmin = await verifyAdminToken();
     if (!isAdmin) {
       return NextResponse.json(
@@ -48,6 +37,16 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "Thiếu cấu hình upload ảnh (BLOB_READ_WRITE_TOKEN) trên môi trường triển khai",
+        },
+        { status: 500 },
+      );
+    }
 
     const ext =
       path.extname(file.name) ||
@@ -60,6 +59,7 @@ export async function POST(req: Request) {
     const blob = await put(name, file, {
       access: "public",
       addRandomSuffix: false,
+      contentType: mime,
     });
 
     return NextResponse.json({ ok: true, url: blob.url });
