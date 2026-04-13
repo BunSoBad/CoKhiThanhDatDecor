@@ -11,6 +11,9 @@ import { AdminQuoteActions } from "./AdminQuoteActions";
 import { AdminProductsPanel } from "./AdminProductsPanel";
 import { AdminProjectsPanel } from "./AdminProjectsPanel";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: `Admin | ${BRAND.name}`,
   description:

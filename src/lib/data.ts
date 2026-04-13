@@ -363,7 +363,10 @@ export async function createProductFromAdmin(
     return { ok: true, id: row.id };
   } catch (e) {
     console.error("[data] createProductFromAdmin failed:", e);
-    return { ok: false, error: "Không thể tạo sản phẩm" };
+    return {
+      ok: false,
+      error: e instanceof Error ? e.message : "Không thể tạo sản phẩm",
+    };
   }
 }
 
@@ -390,7 +393,10 @@ export async function updateProductFromAdmin(
     return { ok: true };
   } catch (e) {
     console.error("[data] updateProductFromAdmin failed:", e);
-    return { ok: false, error: "Không thể cập nhật sản phẩm" };
+    return {
+      ok: false,
+      error: e instanceof Error ? e.message : "Không thể cập nhật sản phẩm",
+    };
   }
 }
 
@@ -430,7 +436,10 @@ export async function createProjectFromAdmin(
     return { ok: true, id: row.id };
   } catch (e) {
     console.error("[data] createProjectFromAdmin failed:", e);
-    return { ok: false, error: "Không thể tạo dự án" };
+    return {
+      ok: false,
+      error: e instanceof Error ? e.message : "Không thể tạo dự án",
+    };
   }
 }
 
@@ -457,7 +466,10 @@ export async function updateProjectFromAdmin(
     return { ok: true };
   } catch (e) {
     console.error("[data] updateProjectFromAdmin failed:", e);
-    return { ok: false, error: "Không thể cập nhật dự án" };
+    return {
+      ok: false,
+      error: e instanceof Error ? e.message : "Không thể cập nhật dự án",
+    };
   }
 }
 

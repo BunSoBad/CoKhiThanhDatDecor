@@ -3,6 +3,9 @@ import { z } from "zod";
 import { verifyAdminToken } from "@/lib/auth";
 import { createProjectFromAdmin } from "@/lib/data";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const BodySchema = z.object({
   nameVi: z.string().min(2, "Tên quá ngắn"),
   slug: z.string().optional().or(z.literal("")),

@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const QuoteBodySchema = z.object({
   name: z.string().min(2, "Vui lòng nhập họ tên"),
   phone: z

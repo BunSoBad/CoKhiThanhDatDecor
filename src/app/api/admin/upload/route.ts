@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 import { verifyAdminToken } from "@/lib/auth";
 
 const MAX_BYTES = 8 * 1024 * 1024;
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
