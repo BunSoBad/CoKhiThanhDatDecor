@@ -1,12 +1,23 @@
-import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import { NextResponse } from "next/server";
+import { put } from "@vercel/blob";
 import { verifyAdminToken } from "@/lib/auth";
 
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function POST(req: Request) {
   try {
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "Thiếu cấu hình BLOB_READ_WRITE_TOKEN trên môi trường deploy",
+        },
+        { status: 500 },
+      );
+    }
+
     const isAdmin = await verifyAdminToken();
     if (!isAdmin) {
       return NextResponse.json(
@@ -38,7 +49,6 @@ export async function POST(req: Request) {
       );
     }
 
-    const buf = Buffer.from(await file.arrayBuffer());
     const ext =
       path.extname(file.name) ||
       (mime === "image/png"
@@ -46,12 +56,13 @@ export async function POST(req: Request) {
         : mime === "image/webp"
           ? ".webp"
           : ".jpg");
-    const name = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}${ext}`;
-    const dir = path.join(process.cwd(), "public", "img", "uploads");
-    await mkdir(dir, { recursive: true });
-    await writeFile(path.join(dir, name), buf);
+    const name = `uploads/${Date.now()}-${Math.random().toString(36).slice(2, 10)}${ext}`;
+    const blob = await put(name, file, {
+      access: "public",
+      addRandomSuffix: false,
+    });
 
-    return NextResponse.json({ ok: true, url: `/img/uploads/${name}` });
+    return NextResponse.json({ ok: true, url: blob.url });
   } catch (e) {
     return NextResponse.json(
       {
