@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
+
+# Ảnh tải lên từ trang admin (giữ thư mục qua .gitkeep)
+public/img/uploads/*
+!public/img/uploads/.gitkeep

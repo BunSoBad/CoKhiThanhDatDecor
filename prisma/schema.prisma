@@ -1,0 +1,123 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  nameVi      String
+  slug        String   @unique
+  description String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  products   Product[]
+  projects   ProjectCase[]
+  quoteRequests QuoteRequest[]
+
+  @@index([sortOrder])
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  nameVi      String
+  slug        String   @unique
+  categoryId  String?
+  sortOrder   Int      @default(0)
+  isFeatured  Boolean  @default(false)
+  summary     String?
+  description String?
+
+  // Store images/attributes as JSON to keep schema simple for a brochure site.
+  heroImageUrl    String?
+  galleryImageUrls Json?
+
+  // Quote-only: customers submit form for pricing.
+  priceModel     String   @default("quote")
+  attributes      Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  category Category? @relation(fields: [categoryId], references: [id])
+  quoteRequests QuoteRequest[]
+
+  @@index([sortOrder])
+}
+
+model ProjectCase {
+  id          String   @id @default(cuid())
+  nameVi      String
+  slug        String   @unique
+  categoryId  String?
+  sortOrder   Int      @default(0)
+  coverImageUrl String?
+
+  summary     String?
+  description String?
+  galleryImageUrls Json?
+
+  isFeatured  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  category Category? @relation(fields: [categoryId], references: [id])
+
+  @@index([sortOrder])
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  titleVi   String
+  slug      String   @unique
+  excerptVi String?
+  contentVi String   // Markdown
+  coverImageUrl String?
+  sortOrder Int      @default(0)
+  isFeatured Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([sortOrder])
+}
+
+enum QuoteStatus {
+  NEW
+  CONTACTED
+  WON
+  LOST
+}
+
+model QuoteRequest {
+  id        String @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  address   String?
+
+  // Link to selected product/category if available.
+  productId String?
+  categoryId String?
+
+  sizeNote  String
+  message   String?
+  status     QuoteStatus @default(NEW)
+  leadSource String @default("website")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  product   Product? @relation(fields: [productId], references: [id])
+  category  Category? @relation(fields: [categoryId], references: [id])
+
+  @@index([status])
+  @@index([createdAt])
+}
