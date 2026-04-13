@@ -27,9 +27,10 @@ export function AdminQuoteActions({
         method: "DELETE",
         credentials: "include",
       });
+      const data = (await res.json()) as { ok?: boolean; error?: string };
 
       if (!res.ok) {
-        setError("Xóa thất bại");
+        setError(data.error ?? "Xóa thất bại");
         return;
       }
 
@@ -55,9 +56,10 @@ export function AdminQuoteActions({
         },
         body: JSON.stringify({ status: newStatus }),
       });
+      const data = (await res.json()) as { ok?: boolean; error?: string };
 
       if (!res.ok) {
-        setError("Cập nhật thất bại");
+        setError(data.error ?? "Cập nhật thất bại");
         return;
       }
 

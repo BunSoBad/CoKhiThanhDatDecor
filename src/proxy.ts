@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getExpectedAdminToken } from "@/lib/auth";
+import { isValidAdminToken } from "@/lib/auth";
 
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -8,9 +8,8 @@ export function proxy(request: NextRequest) {
   // Protect /admin routes (except /admin/login)
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
     const adminToken = request.cookies.get("admin_token")?.value;
-    const expectedToken = getExpectedAdminToken();
 
-    if (!adminToken || !expectedToken || adminToken !== expectedToken) {
+    if (!isValidAdminToken(adminToken)) {
       return NextResponse.redirect(new URL("/admin/login", request.url));
     }
   }
