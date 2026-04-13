@@ -14,12 +14,14 @@ export async function POST(req: Request) {
     }
 
     const response = NextResponse.json({ ok: true });
+    const encoded = encodeURIComponent(password);
     response.cookies.set({
       name: "admin_token",
-      value: password,
+      value: encoded,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
+      path: "/",
       maxAge: 7 * 24 * 60 * 60, // 7 days
     });
 

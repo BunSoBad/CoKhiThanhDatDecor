@@ -4,10 +4,11 @@ export async function verifyAdminToken(): Promise<boolean> {
   const cookieStore = await cookies();
   const token = cookieStore.get("admin_token")?.value;
   const adminPassword = process.env.ADMIN_PASSWORD;
+  const expected = adminPassword ? encodeURIComponent(adminPassword) : undefined;
 
   return (
     token !== undefined &&
     adminPassword !== undefined &&
-    token === adminPassword
+    (token === expected || token === adminPassword)
   );
 }

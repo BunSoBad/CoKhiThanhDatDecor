@@ -25,6 +25,7 @@ export function AdminQuoteActions({
     try {
       const res = await fetch(`/api/quotes/${id}`, {
         method: "DELETE",
+        credentials: "include",
       });
 
       if (!res.ok) {
@@ -48,6 +49,7 @@ export function AdminQuoteActions({
     try {
       const res = await fetch(`/api/quotes/${id}`, {
         method: "PATCH",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

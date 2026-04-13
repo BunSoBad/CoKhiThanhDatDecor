@@ -52,6 +52,7 @@ export function AdminProjectsPanel({
     fd.append("file", file);
     const res = await fetch("/api/admin/upload", {
       method: "POST",
+      credentials: "include",
       body: fd,
     });
     const data = (await res.json()) as {
@@ -125,6 +126,7 @@ export function AdminProjectsPanel({
       const method = editingId ? "PATCH" : "POST";
       const res = await fetch(url, {
         method,
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
@@ -149,6 +151,7 @@ export function AdminProjectsPanel({
     try {
       const res = await fetch(`/api/admin/projects/${id}`, {
         method: "DELETE",
+        credentials: "include",
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok) {
