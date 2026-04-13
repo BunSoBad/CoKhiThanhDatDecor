@@ -54,7 +54,7 @@ export default async function Home() {
 
         <div className="home-hero-grid mx-auto max-w-7xl px-4 py-6 sm:px-6 md:py-2 lg:px-8 animate-slide-up">
           <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-10">
-            <div className="space-y-6">
+            <div className="min-w-0 space-y-6">
               <div className="highlight-pill">
                 <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
                 Giải pháp cổng cửa sáng tạo
@@ -123,13 +123,13 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="hero-panel rounded-[32px] border border-slate-200/70 p-5">
+            <div className="hero-panel w-full min-w-0 rounded-[32px] border border-slate-200/70 p-4 sm:p-5">
               <div className="grid gap-3">
                 <div className="overflow-hidden rounded-[28px] border border-slate-200 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
                   <img
                     src={products[0]?.heroImageUrl ?? "/img/logo.jpg"}
                     alt={products[0]?.nameVi ?? "Hình ảnh sản phẩm"}
-                    className="h-70 w-full object-cover"
+                    className="h-56 w-full object-cover sm:h-70"
                   />
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -137,19 +137,19 @@ export default async function Home() {
                     <img
                       src={products[1]?.heroImageUrl ?? "/img/logo.jpg"}
                       alt={products[1]?.nameVi ?? "Hình ảnh sản phẩm"}
-                      className="h-48 w-full object-cover"
+                      className="h-40 w-full object-cover sm:h-48"
                     />
                   </div>
                   <div className="overflow-hidden rounded-[28px] border border-slate-200 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
                     <img
                       src={projects[0]?.coverImageUrl ?? "/img/logo.jpg"}
                       alt={projects[0]?.nameVi ?? "Hình ảnh dự án"}
-                      className="h-48 w-full object-cover"
+                      className="h-40 w-full object-cover sm:h-48"
                     />
                   </div>
                 </div>
-                <div className="rounded-[28px] border border-slate-200 bg-orange-50/80 p-5">
-                  <div className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-600">
+                <div className="rounded-[28px] border border-slate-200 bg-orange-50/80 p-4 sm:p-5">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-600 sm:text-xs sm:tracking-[0.24em]">
                     Ảnh thực tế
                   </div>
                   <div className="mt-2 text-sm text-slate-700">
@@ -169,7 +169,7 @@ export default async function Home() {
                   </div>
                   <a
                     href={`mailto:${BRAND.email}`}
-                    className="text-sm text-slate-700 underline-offset-2 transition-colors hover:text-amber-700 hover:underline"
+                    className="break-all text-sm text-slate-700 underline-offset-2 transition-colors hover:text-amber-700 hover:underline"
                   >
                     {BRAND.email}
                   </a>

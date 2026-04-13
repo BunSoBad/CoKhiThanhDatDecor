@@ -72,7 +72,7 @@ export default function RootLayout({
       lang="vi"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col overflow-x-clip bg-slate-50 text-slate-950 pb-[env(safe-area-inset-bottom)]">
+      <body className="min-h-full flex flex-col overflow-x-hidden bg-slate-50 text-slate-950 pb-[env(safe-area-inset-bottom)]">
         <SiteHeader />
         <main className="flex-1">
           <div className="page-transition">{children}</div>

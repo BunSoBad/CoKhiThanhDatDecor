@@ -31,11 +31,14 @@ export function MobileMenu({ categories }: { categories: CategoryLite[] }) {
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpen((prev) => !prev);
+        }}
         aria-expanded={open}
         aria-controls="mobile-menu-panel"
         aria-label="Mở menu điều hướng"
-        className="inline-flex h-11 min-w-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-3 text-slate-800 shadow-sm transition hover:border-amber-400 active:scale-[0.98] md:hidden"
+        className="relative z-[70] inline-flex h-11 min-w-11 touch-manipulation items-center justify-center rounded-xl border border-slate-200 bg-white px-3 text-slate-800 shadow-sm transition hover:border-amber-400 active:scale-[0.98] md:hidden"
       >
         <span className="sr-only">Menu</span>
         <svg
@@ -55,7 +58,7 @@ export function MobileMenu({ categories }: { categories: CategoryLite[] }) {
       </button>
 
       {open ? (
-        <div className="fixed inset-0 z-[100] md:hidden" role="dialog" aria-modal="true">
+        <div className="fixed inset-0 z-[120] md:hidden" role="dialog" aria-modal="true">
           <button
             type="button"
             className="absolute inset-0 bg-slate-900/50 backdrop-blur-[2px]"
@@ -64,7 +67,8 @@ export function MobileMenu({ categories }: { categories: CategoryLite[] }) {
           />
           <div
             id="mobile-menu-panel"
-            className="mobile-menu-panel absolute right-0 top-0 flex h-full w-[min(100vw-2.5rem,20rem)] flex-col border-l border-slate-200 bg-white shadow-2xl"
+            className="mobile-menu-panel absolute right-0 top-0 flex h-full w-[min(100vw-1.5rem,20rem)] flex-col border-l border-slate-200 bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-slate-100 px-4 py-4">
               <div className="text-sm font-semibold text-slate-950">Menu</div>

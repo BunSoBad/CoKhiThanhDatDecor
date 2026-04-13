@@ -43,6 +43,11 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 .mobile-menu-panel {
@@ -116,6 +121,7 @@ select {
 
 .home-page {
   color: var(--foreground);
+  overflow-x: clip;
 }
 
 .home-hero {
@@ -167,16 +173,18 @@ select {
   position: relative;
   border-radius: 1.75rem;
   overflow: hidden;
-  min-height: min(72vw, 520px);
+  aspect-ratio: 16 / 7;
   box-shadow: var(--shadow-deep);
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .showcase-strip img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top center;
   display: block;
 }
 
@@ -394,12 +402,29 @@ select {
 
   .showcase-strip {
     border-radius: 1.1rem;
-    min-height: min(64vw, 320px);
+    aspect-ratio: 16 / 9;
+  }
+
+  .showcase-strip::after {
+    background: linear-gradient(
+      to top,
+      rgba(15, 23, 42, 0.25) 0%,
+      rgba(15, 23, 42, 0.06) 38%,
+      transparent 62%
+    );
   }
 
   .highlight-pill {
     font-size: 0.76rem;
     padding: 0.45rem 0.75rem;
+  }
+
+  .stat-pill {
+    padding: 0.8rem 0.9rem;
+  }
+
+  .stat-pill-label {
+    letter-spacing: 0.14em;
   }
 }
 
