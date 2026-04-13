@@ -1,4 +1,3 @@
-import { Prisma } from "@/generated/prisma/client";
 import { prisma } from "./prisma";
 import { BRAND } from "./brand";
 import { slugifyVi } from "./slug";
@@ -384,7 +383,7 @@ export async function updateProductFromAdmin(
         summary: input.summary?.trim() || null,
         description: input.description?.trim() || null,
         heroImageUrl: input.heroImageUrl?.trim() || null,
-        galleryImageUrls: gallery.length > 0 ? gallery : Prisma.JsonNull,
+        galleryImageUrls: gallery.length > 0 ? gallery : undefined,
         isFeatured: input.isFeatured,
       },
     });
@@ -451,7 +450,7 @@ export async function updateProjectFromAdmin(
         summary: input.summary?.trim() || null,
         description: input.description?.trim() || null,
         coverImageUrl: input.coverImageUrl?.trim() || null,
-        galleryImageUrls: gallery.length > 0 ? gallery : Prisma.JsonNull,
+        galleryImageUrls: gallery.length > 0 ? gallery : undefined,
         isFeatured: input.isFeatured,
       },
     });
