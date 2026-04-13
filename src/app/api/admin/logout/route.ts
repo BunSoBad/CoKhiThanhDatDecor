@@ -8,5 +8,11 @@ export async function GET() {
     ),
   );
   response.cookies.delete("admin_token");
+  response.cookies.set({
+    name: "admin_token",
+    value: "",
+    path: "/",
+    maxAge: 0,
+  });
   return response;
 }

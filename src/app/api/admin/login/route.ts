@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getExpectedAdminToken } from "@/lib/auth";
 
 export async function POST(req: Request) {
   try {
@@ -13,14 +14,21 @@ export async function POST(req: Request) {
       );
     }
 
+    const expectedToken = getExpectedAdminToken();
+    if (!expectedToken) {
+      return NextResponse.json(
+        { ok: false, error: "Thiếu cấu hình ADMIN_PASSWORD" },
+        { status: 500 },
+      );
+    }
+
     const response = NextResponse.json({ ok: true });
-    const encoded = encodeURIComponent(password);
     response.cookies.set({
       name: "admin_token",
-      value: encoded,
+      value: expectedToken,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "lax",
       path: "/",
       maxAge: 7 * 24 * 60 * 60, // 7 days
     });
