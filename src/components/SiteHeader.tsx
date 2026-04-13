@@ -3,7 +3,6 @@ import Link from "next/link";
 import { getActiveCategories } from "@/lib/data";
 import { BRAND } from "@/lib/brand";
 import CategoryDropdown from "@/components/CategoryDropdown";
-import { MobileMenu } from "@/components/MobileMenu";
 
 export default async function SiteHeader() {
   const categories = await getActiveCategories();
@@ -78,7 +77,6 @@ export default async function SiteHeader() {
           </nav>
 
           <div className="ml-3 flex shrink-0 items-center gap-2 md:hidden">
-            <MobileMenu categories={categories} />
             <Link
               href="/nhan-bao-gia"
               className="btn-primary whitespace-nowrap px-3 py-2.5 text-xs font-semibold"
