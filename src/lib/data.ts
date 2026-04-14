@@ -645,13 +645,9 @@ const FALLBACK_PRODUCTS: ProductLite[] = [
     heroImageUrl: "/img/103.jpg",
     galleryImageUrls: [
       "/img/103_1.jpg",
+      "/img/103_2.jpg",
+      "/img/103_3.jpg",
       "/img/103_4.jpg",
-      "/img/103_6.jpg",
-      "/img/103_7.jpg",
-      "/img/103_8.jpg",
-      "/img/103_9.jpg",
-      "/img/103_10.jpg",
-      "/img/103_12.jpg",
     ],
     attributes: {
       "Phong cách": "Hiện đại",

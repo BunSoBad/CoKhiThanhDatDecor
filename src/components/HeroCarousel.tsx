@@ -29,8 +29,8 @@ export function HeroCarousel({ images }: { images: HeroImage[] }) {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-[28px] border border-slate-200 shadow-sm group">
-      <div className="relative h-56 w-full sm:h-70">
+    <div className="relative overflow-hidden rounded-[27px] border border-slate-300 shadow-sm group">
+      <div className="relative h-56 w-full sm:h-70 lg:h-[550px]">
         {/* Slide images */}
         {images.map((img, idx) => (
           <img

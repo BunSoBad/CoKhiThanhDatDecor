@@ -46,15 +46,44 @@ export default async function Home() {
 
   return (
     <div className="bg-white">
-      <section className="relative overflow-hidden bg-gradient-to-b from-amber-50 via-orange-50/30 to-white py-12 sm:py-16 md:py-20">
+      {/* Mobile hero carousel - prominent at top */}
+      <div className="lg:hidden">
+        <div className="relative w-full">
+          <HeroCarousel
+            images={[
+              {
+                url: products[0]?.heroImageUrl ?? "/img/logo.jpg",
+                alt: products[0]?.nameVi ?? "Hình ảnh sản phẩm",
+              },
+              {
+                url: products[1]?.heroImageUrl ?? "/img/logo.jpg",
+                alt: products[1]?.nameVi ?? "Hình ảnh sản phẩm",
+              },
+              {
+                url: products[2]?.heroImageUrl ?? "/img/logo.jpg",
+                alt: products[2]?.nameVi ?? "Hình ảnh sản phẩm",
+              },
+              {
+                url: projects[4]?.coverImageUrl ?? "/img/logo.jpg",
+                alt: projects[4]?.nameVi ?? "Hình ảnh dự án",
+              },
+              {
+                url: projects[5]?.coverImageUrl ?? "/img/logo.jpg",
+                alt: projects[5]?.nameVi ?? "Hình ảnh dự án",
+              },
+            ].filter((img) => img.url !== "/img/logo.jpg")}
+          />
+        </div>
+      </div>
+      <section className="relative overflow-hidden bg-gradient-to-b from-amber-50 via-orange-50/30 to-white py-8 sm:py-12 md:py-15">
         <div className="absolute inset-0">
           <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-amber-100 to-orange-100/20 opacity-30 blur-3xl" />
           <div className="absolute -bottom-20 left-1/3 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-orange-50 to-amber-50 opacity-40 blur-3xl" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
-            <div className="max-w-lg space-y-6">
+        <div className="relative mx-auto max-w-full px-1 sm:px-1 lg:px-15">
+          <div className="grid gap-8 lg:grid-cols-[40%_calc(60%-2rem)] lg:items-start lg:gap-16">
+            <div className="max-w-lg space-y-5">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-4 py-2 backdrop-blur-sm">
                 <span className="inline-block h-2.5 w-2.5 rounded-full bg-amber-500"></span>
                 <span className="text-sm font-semibold text-amber-700">
@@ -63,10 +92,10 @@ export default async function Home() {
               </div>
 
               <div>
-                <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+                <h1 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
                   Cổng cửa theo nhu cầu thực tế
                 </h1>
-                <div className="mt-2 flex flex-wrap items-center gap-2 text-4xl font-bold sm:text-5xl">
+                <div className="mt-2 flex flex-wrap items-center gap-2 text-3xl font-bold sm:text-4xl md:text-5xl">
                   <span className="text-amber-600">tự động</span>
                   <span className="text-amber-600">—</span>
                   <span className="text-amber-600">thông minh</span>
@@ -75,17 +104,24 @@ export default async function Home() {
                 </div>
               </div>
 
-              <p className="text-lg leading-relaxed text-slate-600">
+              <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
                 {BRAND.name} thiết kế, thi công và lắp đặt cổng cửa thông minh
                 với phong cách decor đồng bộ, phù hợp thực tế và dễ sử dụng.
               </p>
 
-              <div className="flex flex-wrap gap-3 pt-2">
+              <div className="flex flex-col gap-2 pt-2 sm:flex-row sm:flex-wrap">
                 <Link
                   href="/nhan-bao-gia?source=home"
                   className="inline-flex items-center justify-center rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-amber-700"
                 >
                   Nhận báo giá nhanh
+                </Link>
+                <Link
+                  href="https://zalo.me/0967105883"
+                  target="_blank"
+                  className="inline-flex items-center justify-center rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-amber-700"
+                >
+                  Tư vấn qua Zalo
                 </Link>
                 <Link
                   href="/du-an"
@@ -97,22 +133,45 @@ export default async function Home() {
                   href="/tai-nguyen"
                   className="inline-flex items-center justify-center rounded-full border-2 border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
-                  Xem 30 mẫu cửa
+                  Xem các mẫu cửa
                 </Link>
               </div>
 
-              <div className="md:hidden">
-                <Link
-                  href="/admin"
-                  className="inline-flex w-full items-center justify-center rounded-full border-2 border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-                >
-                  Trang quản trị
-                </Link>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3 pt-6 border-t border-amber-200/50">
+                {[
+                  {
+                    value: "100+",
+                    label: "Mẫu thiết kế",
+                    detail: "Độ bền cao, bảo trì dễ dàng",
+                  },
+                  {
+                    value: "100+",
+                    label: "Dự án hoàn thiện",
+                    detail: "Phong cách decor đồng bộ",
+                  },
+                  {
+                    value: "24h",
+                    label: "Phản hồi nhanh",
+                    detail: "Tư vấn và báo giá trong 24h",
+                  },
+                ].map((item) => (
+                  <div key={item.label} className="text-center">
+                    <div className="text-2xl font-bold text-slate-950">
+                      {item.value}
+                    </div>
+                    <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-amber-600">
+                      {item.label}
+                    </div>
+                    <div className="mt-2 text-xs text-slate-600">
+                      {item.detail}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="hidden lg:block">
-              <div className="relative rounded-[32px] border-2 border-amber-200 bg-white p-1 shadow-2xl">
+            <div className="hidden lg:flex lg:justify-center lg:items-start lg:col-span-1">
+              <div className="relative w-full rounded-[40px] border-2 border-amber-200 bg-white p-1 shadow-2xl">
                 <HeroCarousel
                   images={[
                     {
@@ -124,8 +183,16 @@ export default async function Home() {
                       alt: products[1]?.nameVi ?? "Hình ảnh sản phẩm",
                     },
                     {
+                      url: products[2]?.heroImageUrl ?? "/img/logo.jpg",
+                      alt: products[2]?.nameVi ?? "Hình ảnh sản phẩm",
+                    },
+                    {
                       url: projects[0]?.coverImageUrl ?? "/img/logo.jpg",
                       alt: projects[0]?.nameVi ?? "Hình ảnh dự án",
+                    },
+                    {
+                      url: projects[4]?.coverImageUrl ?? "/img/logo.jpg",
+                      alt: projects[4]?.nameVi ?? "Hình ảnh dự án",
                     },
                   ].filter((img) => img.url !== "/img/logo.jpg")}
                 />
@@ -134,53 +201,117 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      <section className="border-t border-slate-200 bg-slate-50/50 py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 sm:grid-cols-3">
-            {[
-              {
-                value: "100+",
-                label: "Mẫu thiết kế",
-                detail: "Độ bền cao, bảo trì dễ dàng",
-              },
-              {
-                value: "100+",
-                label: "Dự án hoàn thiện",
-                detail: "Phong cách decor đồng bộ",
-              },
-              {
-                value: "24h",
-                label: "Phản hồi nhanh",
-                detail: "Tư vấn và báo giá trong 24h",
-              },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="rounded-[24px] border border-slate-200 bg-white p-6 text-center shadow-sm"
-              >
-                <div className="text-3xl font-bold text-slate-950">
-                  {item.value}
-                </div>
-                <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-amber-600">
-                  {item.label}
-                </div>
-                <div className="mt-3 text-sm text-slate-600">{item.detail}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 md:py-8 lg:px-8">
-        <div className="showcase-strip">
+        <div className="showcase-strip overflow-hidden rounded-2xl">
           <img
             src="/img/background.jpg"
             alt="Hình ảnh không gian và cổng cửa"
+            className="w-full object-cover"
           />
         </div>
-      </section>
+      </section>{" "}
+      {/* Đã thêm thẻ đóng ở đây để hết lỗi cấu trúc */}
+      {/* Section 2: YouTube Videos Section */}
+      <section className="mx-auto max-w-[1600px] px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mb-8 text-center sm:text-left">
+          <h2 className="text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+            Video giới thiệu thực tế
+          </h2>
+          <p className="mt-2 text-slate-600">
+            Trải nghiệm vận hành cửa tự động thông minh qua định dạng video ngắn
+          </p>
+        </div>
 
+        <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {/* Video 1 */}
+          <div className="group overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl">
+            <div className="relative w-full pt-[177.77%] bg-slate-900">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/KPZJblsowEU?rel=0"
+                title="Cửa tự động thông minh Thành Đạt Decor"
+                style={{ border: 0 }} // Thay cho frameBorder
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <div className="p-4">
+              <p className="font-bold text-slate-800 text-sm sm:text-base">
+                Cửa tự động biệt thự
+              </p>
+              <p className="hidden sm:block text-xs text-slate-500 mt-1">
+                Vận hành êm ái, đẳng cấp
+              </p>
+            </div>
+          </div>
+
+          {/* Video 2 */}
+          <div className="group overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl">
+            <div className="relative w-full pt-[177.77%] bg-slate-900">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/eP2meJu8cec?rel=0"
+                title="Cửa tự động đẳng cấp cho biệt thự"
+                style={{ border: 0 }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <div className="p-4">
+              <p className="font-bold text-slate-800 text-sm sm:text-base">
+                Giải pháp hiện đại
+              </p>
+              <p className="hidden sm:block text-xs text-slate-500 mt-1">
+                Thông minh cho không gian sống
+              </p>
+            </div>
+          </div>
+
+          {/* Video 3 */}
+          <div className="group overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl">
+            <div className="relative w-full pt-[177.77%] bg-slate-900">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/u_llYBDagmY?rel=0"
+                title="Đầu tư cửa tự động đúng cách"
+                style={{ border: 0 }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <div className="p-4">
+              <p className="font-bold text-slate-800 text-sm sm:text-base">
+                Tiêu tiền đúng cách
+              </p>
+              <p className="hidden sm:block text-xs text-slate-500 mt-1">
+                Nâng tầm giá trị ngôi nhà
+              </p>
+            </div>
+          </div>
+
+          {/* Video 4 */}
+          <div className="group overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl">
+            <div className="relative w-full pt-[177.77%] bg-slate-900">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/GYtuL9bCWvM?rel=0"
+                title="Cổng lùa tự động xu hướng 2026"
+                style={{ border: 0 }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <div className="p-4">
+              <p className="font-bold text-slate-800 text-sm sm:text-base">
+                Cổng lùa gỗ nhựa
+              </p>
+              <p className="hidden sm:block text-xs text-slate-500 mt-1">
+                Tiện - Đẹp - Sang trọng
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="section-lux mx-auto max-w-[min(96rem,calc(100%-2rem))] px-4 py-14 mt-6 md:mt-8 animate-slide-up">
         <SectionTitle
           kicker="Sản phẩm nổi bật"
@@ -194,7 +325,6 @@ export default async function Home() {
           ))}
         </div>
       </section>
-
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-5 lg:px-8">
         <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_32px_42px_rgba(15,23,42,0.08)]">
           <div className="grid gap-0 md:grid-cols-4">
@@ -226,7 +356,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       <section className="section-dark border-t border-slate-800/80">
         <div className="mx-auto max-w-7xl px-4 py-14 md:py-16">
           <SectionTitle
@@ -243,7 +372,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
       <section className="mx-auto max-w-7xl px-4 py-12">
         <SectionTitle
           kicker="Vì sao chọn chúng tôi"
@@ -282,7 +410,6 @@ export default async function Home() {
           ))}
         </div>
       </section>
-
       <section className="border-t bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12">
           <SectionTitle

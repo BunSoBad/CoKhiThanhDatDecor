@@ -1,49 +1,63 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BRAND } from "@/lib/brand";
 
 export const metadata = {
   title: `Tất Cả Mẫu Cửa Cổng | ${BRAND.name}`,
   description:
-    "Xem bộ sưu tập 30 mẫu cửa cổng đẹp: cổng tự động, cổng thông minh, cấu cửa decor.",
+    "Xem bộ sưu tập các mẫu cửa cổng đẹp: cổng tự động, cổng thông minh, cấu cửa decor.",
+  // Thêm OpenGraph để tối ưu chia sẻ mạng xã hội
+  openGraph: {
+    title: `Tất Cả Mẫu Cửa Cổng | ${BRAND.name}`,
+    description: "Khám phá các mẫu cửa cổng hiện đại nhất.",
+    images: ["/img/1_1.jpg"],
+  },
 };
 
 const doorGalleryImages = [
-  "/img/1_1.jpg",
-  "/img/1_2.jpg",
-  "/img/1_3.jpg",
-  "/img/1_4.jpg",
-  "/img/2_1.jpg",
-  "/img/2_2.jpg",
-  "/img/2_3.jpg",
-  "/img/2_4.jpg",
-  "/img/2_5.jpg",
-  "/img/3_1.jpg",
-  "/img/3_2.jpg",
-  "/img/3_3.jpg",
-  "/img/3_4.jpg",
-  "/img/4_1.jpg",
-  "/img/4_2.jpg",
-  "/img/4_3.jpg",
-  "/img/4_4.jpg",
-  "/img/5_1.jpg",
-  "/img/5_2.jpg",
-  "/img/5_3.jpg",
-  "/img/5_4.jpg",
-  "/img/6_1.jpg",
-  "/img/6_2.jpg",
-  "/img/6_3.jpg",
-  "/img/6_4.jpg",
-  "/img/101.jpg",
-  "/img/102.jpg",
-  "/img/103.jpg",
-  "/img/103_1.jpg",
-  "/img/103_4.jpg",
+  "/img/50_1.jpg",
+  "/img/50_2.jpg",
+  "/img/50_3.jpg",
+  "/img/50_4.jpg",
+  "/img/50_5.jpg",
+  "/img/50_6.jpg",
+  "/img/50_7.jpg",
+  "/img/50_8.jpg",
+  "/img/50_9.jpg",
+  "/img/50_10.jpg",
+  "/img/50_11.jpg",
+  "/img/50_12.jpg",
+  "/img/50_13.jpg",
+  "/img/50_14.jpg",
+  "/img/50_15.jpg",
+  "/img/50_16.jpg",
+  "/img/50_17.jpg",
+  "/img/50_18.jpg",
+  "/img/50_19.jpg",
+  "/img/50_20.jpg",
+  "/img/50_21.jpg",
+  "/img/50_22.jpg",
+  "/img/50_23.jpg",
+  "/img/50_24.jpg",
+  "/img/50_25.jpg",
+  "/img/50_26.jpg",
+  "/img/50_27.jpg",
+  "/img/50_28.jpg",
+  "/img/50_29.jpg",
+  "/img/50_30.jpg",
+  "/img/50_31.jpg",
+  "/img/50_32.jpg",
+  "/img/50_33.jpg",
+  "/img/50_34.jpg",
+  "/img/50_35.jpg",
+  "/img/50_36.jpg",
 ];
 
 export default function DoorCollectionPage() {
   return (
     <div className="min-h-screen bg-slate-50/80">
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      {/* Tăng max-w ở đây để header cân xứng với lưới ảnh to bên dưới */}
+      <section className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="flex items-center gap-2 text-amber-600">
@@ -53,13 +67,8 @@ export default function DoorCollectionPage() {
               </p>
             </div>
             <h1 className="mt-3 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-              Bộ sưu tập 30 mẫu cửa đẹp
+              Bộ sưu tập các mẫu cửa đẹp
             </h1>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-              Khám phá toàn bộ bộ sưu tập mẫu cửa cổng: từ cổng tự động hiện
-              đại, cổng thông minh công nghệ cao, đến cổng decor phong cách sang
-              trọng.
-            </p>
           </div>
           <Link
             href="/"
@@ -69,24 +78,29 @@ export default function DoorCollectionPage() {
           </Link>
         </div>
       </section>
-
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      {/* 1. Thay max-w-7xl bằng max-w-[1440px] (hoặc max-w-[1600px] nếu muốn to hơn nữa)
+          2. Sửa grid-cols: bỏ 2xl:grid-cols-5, giữ tối đa là 4 cột
+      */}
+      <section className="mx-auto max-w-[1600px] px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {doorGalleryImages.map((src, idx) => (
             <div
               key={`${src}-${idx}`}
               className="group overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
             >
-              <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
                 <img
                   src={src}
                   alt={`Mẫu cửa ${idx + 1}`}
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
               </div>
-              <div className="p-3">
-                <p className="text-sm font-semibold text-slate-800">
-                  Mẫu thứ {idx + 1}
+              <div className="p-5">
+                {" "}
+                {/* Tăng padding cho card to nhìn sang hơn */}
+                <p className="text-base font-bold text-slate-800">
+                  Mã cửa: {idx + 1}
                 </p>
               </div>
             </div>
@@ -94,33 +108,34 @@ export default function DoorCollectionPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-amber-50 to-orange-50 py-12">
+      <footer className="bg-gradient-to-r from-amber-50 to-orange-50 py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-[2rem] border border-amber-200 bg-white/80 p-8 text-center backdrop-blur-sm sm:p-12">
-            <h2 className="text-2xl font-bold text-slate-950 sm:text-3xl">
-              Bạn thích mẫu nào?
+          <div className="rounded-[2.5rem] border border-amber-200 bg-white/90 p-8 text-center shadow-xl shadow-amber-500/5 backdrop-blur-md sm:p-16">
+            <h2 className="text-3xl font-bold text-slate-950 sm:text-4xl">
+              Bạn tìm thấy mẫu ưng ý chưa?
             </h2>
-            <p className="mt-3 text-slate-600">
-              Hãy liên hệ với chúng tôi để nhận tư vấn chi tiết và báo giá cụ
-              thể.
+            <p className="mt-4 text-lg text-slate-600">
+              Đừng ngần ngại liên hệ để nhận tư vấn kỹ thuật và báo giá ưu đãi
+              nhất.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/nhan-bao-gia"
-                className="inline-flex items-center justify-center rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-amber-700"
+                className="inline-flex items-center justify-center rounded-full bg-amber-600 px-8 py-4 text-base font-bold text-white transition hover:bg-amber-700 hover:scale-105 active:scale-95"
               >
-                Nhận báo giá
+                Nhận báo giá ngay
               </Link>
               <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
+                href="https://zalo.me/0967105883"
+                target="_blank"
+                className="inline-flex items-center justify-center rounded-full border border-amber-600 px-8 py-4 text-base font-bold text-amber-700 transition hover:bg-amber-50"
               >
-                Quay lại trang chủ
+                Tư vấn qua Zalo
               </Link>
             </div>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }

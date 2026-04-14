@@ -1,12 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getActiveCategories } from "@/lib/data";
 import { BRAND } from "@/lib/brand";
-import CategoryDropdown from "@/components/CategoryDropdown";
 
 export default async function SiteHeader() {
-  const categories = await getActiveCategories();
-
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 pt-[env(safe-area-inset-top)] backdrop-blur-xl shadow-sm">
       <div className="mx-auto max-w-7xl px-3 sm:px-4">
@@ -31,7 +27,9 @@ export default async function SiteHeader() {
               )}
             </div>
             <div className="min-w-0 leading-tight">
-              <div className="hidden text-sm text-slate-500 sm:block">Cơ Khí</div>
+              <div className="hidden text-sm text-slate-500 sm:block">
+                Cơ Khí
+              </div>
               <Link
                 href="/"
                 className="block truncate text-[1.05rem] font-semibold text-slate-950 hover:text-slate-700 sm:text-base"
@@ -42,8 +40,6 @@ export default async function SiteHeader() {
           </div>
 
           <nav className="hidden items-center gap-6 md:flex">
-            <CategoryDropdown categories={categories} />
-
             <Link
               href="/du-an"
               className="text-sm font-medium text-slate-950 hover:text-slate-700"
