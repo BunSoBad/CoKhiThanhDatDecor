@@ -44,177 +44,75 @@ export default async function Home() {
     getFeaturedPosts(),
   ]);
 
-  const doorGalleryImages = [
-    "/img/1_1.jpg",
-    "/img/1_2.jpg",
-    "/img/1_3.jpg",
-    "/img/1_4.jpg",
-    "/img/2_1.jpg",
-    "/img/2_2.jpg",
-    "/img/2_3.jpg",
-    "/img/2_4.jpg",
-    "/img/2_5.jpg",
-    "/img/3_1.jpg",
-    "/img/3_2.jpg",
-    "/img/3_3.jpg",
-    "/img/3_4.jpg",
-    "/img/4_1.jpg",
-    "/img/4_2.jpg",
-    "/img/4_3.jpg",
-    "/img/4_4.jpg",
-    "/img/5_1.jpg",
-    "/img/5_2.jpg",
-    "/img/5_3.jpg",
-    "/img/5_4.jpg",
-    "/img/6_1.jpg",
-    "/img/6_2.jpg",
-    "/img/6_3.jpg",
-    "/img/6_4.jpg",
-    "/img/101.jpg",
-    "/img/102.jpg",
-    "/img/103.jpg",
-    "/img/103_1.jpg",
-    "/img/103_4.jpg",
-  ];
-
   return (
-    <div className="home-page bg-slate-50/80">
-      <section className="home-hero shadow-[0_24px_80px_rgba(15,23,42,0.06)]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.12),transparent_34%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.14),transparent_36%)]" />
-        <div className="hero-spot one animate-float" />
-        <div className="hero-spot two animate-float animation-delay-2000" />
-        <div className="hero-spot three animate-float animation-delay-4000" />
+    <div className="bg-white">
+      <section className="relative overflow-hidden bg-gradient-to-b from-amber-50 via-orange-50/30 to-white py-12 sm:py-16 md:py-20">
+        <div className="absolute inset-0">
+          <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-amber-100 to-orange-100/20 opacity-30 blur-3xl" />
+          <div className="absolute -bottom-20 left-1/3 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-orange-50 to-amber-50 opacity-40 blur-3xl" />
+        </div>
 
-        <div className="home-hero-grid mx-auto max-w-7xl px-4 py-6 sm:px-6 md:py-2 lg:px-8 animate-slide-up">
-          <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-10">
-            <div className="min-w-0 space-y-6">
-              <div className="highlight-pill">
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
-                Giải pháp cổng cửa sáng tạo
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+            <div className="max-w-lg space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-4 py-2 backdrop-blur-sm">
+                <span className="inline-block h-2.5 w-2.5 rounded-full bg-amber-500"></span>
+                <span className="text-sm font-semibold text-amber-700">
+                  Giải pháp cổng cửa sáng tạo
+                </span>
               </div>
 
-              <h1 className="max-w-2xl text-3xl font-bold leading-[1.15] tracking-tight text-slate-950 sm:text-4xl md:text-[2.75rem]">
-                Cổng cửa theo nhu cầu thực tế:{" "}
-                <span className="hero-highlight">tự động</span> —{" "}
-                <span className="hero-highlight">thông minh</span> —{" "}
-                <span className="hero-highlight">decor</span>
-              </h1>
+              <div>
+                <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+                  Cổng cửa theo nhu cầu thực tế
+                </h1>
+                <div className="mt-2 flex flex-wrap items-center gap-2 text-4xl font-bold sm:text-5xl">
+                  <span className="text-amber-600">tự động</span>
+                  <span className="text-amber-600">—</span>
+                  <span className="text-amber-600">thông minh</span>
+                  <span className="text-amber-600">—</span>
+                  <span className="text-amber-600">decor</span>
+                </div>
+              </div>
 
-              <p className="max-w-xl text-base leading-relaxed text-slate-600 md:text-[1.05rem]">
+              <p className="text-lg leading-relaxed text-slate-600">
                 {BRAND.name} thiết kế, thi công và lắp đặt cổng cửa thông minh
                 với phong cách decor đồng bộ, phù hợp thực tế và dễ sử dụng.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 pt-2">
                 <Link
                   href="/nhan-bao-gia?source=home"
-                  className="btn-primary text-sm font-semibold"
+                  className="inline-flex items-center justify-center rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-amber-700"
                 >
                   Nhận báo giá nhanh
                 </Link>
                 <Link
                   href="/du-an"
-                  className="btn-secondary text-sm font-semibold"
+                  className="inline-flex items-center justify-center rounded-full border-2 border-amber-600 bg-white px-6 py-3 text-sm font-semibold text-amber-600 transition hover:bg-amber-50"
                 >
                   Xem dự án tiêu biểu
                 </Link>
                 <Link
-                  href="#all-door-collection"
-                  className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
+                  href="/tai-nguyen"
+                  className="inline-flex items-center justify-center rounded-full border-2 border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
                   Xem 30 mẫu cửa
                 </Link>
               </div>
-              <div className="mt-3 md:hidden">
+
+              <div className="md:hidden">
                 <Link
                   href="/admin"
-                  className="inline-flex w-full items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50"
+                  className="inline-flex w-full items-center justify-center rounded-full border-2 border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
                   Trang quản trị
                 </Link>
               </div>
-
-              <div className="mt-6 grid gap-3 md:hidden">
-                {[
-                  {
-                    value: "100+",
-                    label: "Mẫu thiết kế",
-                    detail: "Độ bền cao, bảo trì dễ dàng",
-                  },
-                  {
-                    value: "100+",
-                    label: "Dự án hoàn thiện",
-                    detail: "Phong cách decor đồng bộ",
-                  },
-                  {
-                    value: "24h",
-                    label: "Phản hồi nhanh",
-                    detail: "Tư vấn và báo giá trong 24h",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm"
-                  >
-                    <div className="text-xl font-semibold text-slate-950 sm:text-2xl">
-                      {item.value}
-                    </div>
-                    <div className="mt-1 text-xs uppercase tracking-[0.24em] text-amber-500 sm:text-sm">
-                      {item.label}
-                    </div>
-                    <div className="mt-3 text-sm leading-relaxed text-slate-600">
-                      {item.detail}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="hidden md:block">
-                <div className="mt-6 grid gap-2 sm:gap-3 sm:grid-cols-2">
-                  {[
-                    { value: "100+", label: "Mẫu thiết kế" },
-                    { value: "100+", label: "Dự án hoàn thiện" },
-                    { value: "24h", label: "Phản hồi nhanh" },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="stat-pill px-4 py-3 sm:px-5 sm:py-4"
-                    >
-                      <div className="text-xl font-semibold tabular-nums text-slate-950 sm:text-2xl">
-                        {item.value}
-                      </div>
-                      <div className="stat-pill-label mt-1 sm:mt-2 text-xs sm:text-sm">
-                        {item.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {[
-                    { k: "Vận hành êm ái", v: "Độ bền cao, bảo trì dễ dàng" },
-                    { k: "Hoàn thiện mặt tiền", v: "Phong cách decor đồng bộ" },
-                    { k: "Giải pháp nhanh", v: "Tư vấn và báo giá trong 24h" },
-                  ].map((item) => (
-                    <div
-                      key={item.k}
-                      className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition-transform duration-300 hover:-translate-y-1"
-                    >
-                      <div className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-500">
-                        {item.k}
-                      </div>
-                      <div className="mt-2 text-sm leading-relaxed text-slate-600">
-                        {item.v}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
 
-            <div className="hero-panel w-full min-w-0 rounded-[32px] border border-slate-200/70 p-4 sm:p-5">
-              <div className="grid gap-3">
+            <div className="hidden lg:block">
+              <div className="relative rounded-[32px] border-2 border-amber-200 bg-white p-1 shadow-2xl">
                 <HeroCarousel
                   images={[
                     {
@@ -231,84 +129,46 @@ export default async function Home() {
                     },
                   ].filter((img) => img.url !== "/img/logo.jpg")}
                 />
-                <div className="rounded-[28px] border border-slate-200 bg-orange-50/80 p-4 sm:p-5">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-600 sm:text-xs sm:tracking-[0.24em]">
-                    Ảnh thực tế
-                  </div>
-                  <div className="mt-2 text-sm text-slate-700">
-                    Bộ sưu tập ảnh thực tế từ sản phẩm và dự án giúp khách hàng
-                    hiểu rõ hơn về chất lượng và phong cách hoàn thiện.
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-3xl bg-slate-50 border border-slate-200 p-4">
-                  <div className="text-xs font-semibold text-amber-500">
-                    Liên hệ
-                  </div>
-                  <div className="mt-2 text-sm text-slate-700">
-                    {BRAND.phone}
-                  </div>
-                  <a
-                    href={`mailto:${BRAND.email}`}
-                    className="break-all text-sm text-slate-700 underline-offset-2 transition-colors hover:text-amber-700 hover:underline"
-                  >
-                    {BRAND.email}
-                  </a>
-                </div>
-                <div className="rounded-3xl bg-slate-50 border border-slate-200 p-4">
-                  <div className="text-xs font-semibold text-amber-500">
-                    Địa chỉ
-                  </div>
-                  <div className="mt-2 text-sm text-slate-700">
-                    {BRAND.address}
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section
-        id="all-door-collection"
-        className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
-      >
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-500">
-              Tất cả mẫu cửa cổng
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              Tham khảo 30 mẫu cửa đẹp
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              Xem toàn bộ mẫu cửa cổng, thiết kế decor, cổng tự động và cổng
-              trượt trong một bộ sưu tập đầy đủ.
-            </p>
+      <section className="border-t border-slate-200 bg-slate-50/50 py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 sm:grid-cols-3">
+            {[
+              {
+                value: "100+",
+                label: "Mẫu thiết kế",
+                detail: "Độ bền cao, bảo trì dễ dàng",
+              },
+              {
+                value: "100+",
+                label: "Dự án hoàn thiện",
+                detail: "Phong cách decor đồng bộ",
+              },
+              {
+                value: "24h",
+                label: "Phản hồi nhanh",
+                detail: "Tư vấn và báo giá trong 24h",
+              },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-[24px] border border-slate-200 bg-white p-6 text-center shadow-sm"
+              >
+                <div className="text-3xl font-bold text-slate-950">
+                  {item.value}
+                </div>
+                <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-amber-600">
+                  {item.label}
+                </div>
+                <div className="mt-3 text-sm text-slate-600">{item.detail}</div>
+              </div>
+            ))}
           </div>
-          <Link
-            href="#all-door-collection"
-            className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
-          >
-            Xem 30 ảnh mẫu
-          </Link>
-        </div>
-
-        <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {doorGalleryImages.map((src, idx) => (
-            <div
-              key={`${src}-${idx}`}
-              className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm"
-            >
-              <img
-                src={src}
-                alt={`Mẫu cửa ${idx + 1}`}
-                className="h-44 w-full object-cover sm:h-40 lg:h-36"
-              />
-            </div>
-          ))}
         </div>
       </section>
 
