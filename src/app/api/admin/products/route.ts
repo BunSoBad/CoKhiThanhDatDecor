@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
 import { verifyAdminToken } from "@/lib/auth";
 import { createProductFromAdmin } from "@/lib/data";
 
@@ -30,7 +31,11 @@ export async function POST(req: Request) {
     const parsed = BodySchema.safeParse(json);
     if (!parsed.success) {
       return NextResponse.json(
-        { ok: false, error: "Dữ liệu không hợp lệ", issues: parsed.error.flatten() },
+        {
+          ok: false,
+          error: "Dữ liệu không hợp lệ",
+          issues: parsed.error.flatten(),
+        },
         { status: 400 },
       );
     }
@@ -53,6 +58,8 @@ export async function POST(req: Request) {
       );
     }
 
+    revalidatePath("/", "layout");
+    revalidatePath("/san-pham", "layout");
     return NextResponse.json({ ok: true, id: result.id });
   } catch (e) {
     return NextResponse.json(

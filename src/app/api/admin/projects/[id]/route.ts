@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
 import { verifyAdminToken } from "@/lib/auth";
 import { deleteProjectFromAdmin, updateProjectFromAdmin } from "@/lib/data";
 
@@ -54,6 +55,9 @@ export async function PATCH(
       );
     }
 
+    revalidatePath("/", "layout");
+    revalidatePath("/du-an", "layout");
+    revalidatePath(`/du-an/${d.slug}`, "page");
     return NextResponse.json({ ok: true });
   } catch (e) {
     return NextResponse.json(
@@ -85,6 +89,8 @@ export async function DELETE(
       );
     }
 
+    revalidatePath("/", "layout");
+    revalidatePath("/du-an", "layout");
     return NextResponse.json({ ok: true });
   } catch (e) {
     return NextResponse.json(

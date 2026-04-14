@@ -8,6 +8,7 @@ import {
 import SectionTitle from "@/components/SectionTitle";
 import ProductCard from "@/components/ProductCard";
 import ProjectCard from "@/components/ProjectCard";
+import { HeroCarousel } from "@/components/HeroCarousel";
 
 export const metadata = {
   title: `${BRAND.name} | Cổng cửa tự động, thông minh, decor`,
@@ -87,22 +88,27 @@ export default async function Home() {
                 </Link>
               </div>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <div className="mt-6 grid gap-2 sm:gap-3 sm:grid-cols-2">
                 {[
                   { value: "100+", label: "Mẫu thiết kế" },
                   { value: "100+", label: "Dự án hoàn thiện" },
                   { value: "24h", label: "Phản hồi nhanh" },
                 ].map((item) => (
-                  <div key={item.label} className="stat-pill px-5 py-4">
-                    <div className="text-2xl font-semibold tabular-nums text-slate-950">
+                  <div
+                    key={item.label}
+                    className="stat-pill px-4 py-3 sm:px-5 sm:py-4"
+                  >
+                    <div className="text-xl font-semibold tabular-nums text-slate-950 sm:text-2xl">
                       {item.value}
                     </div>
-                    <div className="stat-pill-label mt-2">{item.label}</div>
+                    <div className="stat-pill-label mt-1 sm:mt-2 text-xs sm:text-sm">
+                      {item.label}
+                    </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {[
                   { k: "Vận hành êm ái", v: "Độ bền cao, bảo trì dễ dàng" },
                   { k: "Hoàn thiện mặt tiền", v: "Phong cách decor đồng bộ" },
@@ -125,29 +131,22 @@ export default async function Home() {
 
             <div className="hero-panel w-full min-w-0 rounded-[32px] border border-slate-200/70 p-4 sm:p-5">
               <div className="grid gap-3">
-                <div className="overflow-hidden rounded-[28px] border border-slate-200 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
-                  <img
-                    src={products[0]?.heroImageUrl ?? "/img/logo.jpg"}
-                    alt={products[0]?.nameVi ?? "Hình ảnh sản phẩm"}
-                    className="h-56 w-full object-cover sm:h-70"
-                  />
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="overflow-hidden rounded-[28px] border border-slate-200 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
-                    <img
-                      src={products[1]?.heroImageUrl ?? "/img/logo.jpg"}
-                      alt={products[1]?.nameVi ?? "Hình ảnh sản phẩm"}
-                      className="h-40 w-full object-cover sm:h-48"
-                    />
-                  </div>
-                  <div className="overflow-hidden rounded-[28px] border border-slate-200 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
-                    <img
-                      src={projects[0]?.coverImageUrl ?? "/img/logo.jpg"}
-                      alt={projects[0]?.nameVi ?? "Hình ảnh dự án"}
-                      className="h-40 w-full object-cover sm:h-48"
-                    />
-                  </div>
-                </div>
+                <HeroCarousel
+                  images={[
+                    {
+                      url: products[0]?.heroImageUrl ?? "/img/logo.jpg",
+                      alt: products[0]?.nameVi ?? "Hình ảnh sản phẩm",
+                    },
+                    {
+                      url: products[1]?.heroImageUrl ?? "/img/logo.jpg",
+                      alt: products[1]?.nameVi ?? "Hình ảnh sản phẩm",
+                    },
+                    {
+                      url: projects[0]?.coverImageUrl ?? "/img/logo.jpg",
+                      alt: projects[0]?.nameVi ?? "Hình ảnh dự án",
+                    },
+                  ].filter((img) => img.url !== "/img/logo.jpg")}
+                />
                 <div className="rounded-[28px] border border-slate-200 bg-orange-50/80 p-4 sm:p-5">
                   <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-600 sm:text-xs sm:tracking-[0.24em]">
                     Ảnh thực tế
@@ -204,7 +203,7 @@ export default async function Home() {
           description="Chọn nhanh mẫu phù hợp, hoặc gửi yêu cầu để nhận báo giá theo kích thước thực tế."
         />
 
-        <div className="mt-8 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}
@@ -252,7 +251,7 @@ export default async function Home() {
             description="Xem case theo từng nhóm để tham khảo kiểu dáng và giải pháp thi công."
           />
 
-          <div className="mt-10 grid gap-7 md:grid-cols-2">
+          <div className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-2">
             {projects.map((pr) => (
               <ProjectCard key={pr.slug} project={pr} />
             ))}
