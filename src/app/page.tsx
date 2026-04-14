@@ -44,6 +44,39 @@ export default async function Home() {
     getFeaturedPosts(),
   ]);
 
+  const doorGalleryImages = [
+    "/img/1_1.jpg",
+    "/img/1_2.jpg",
+    "/img/1_3.jpg",
+    "/img/1_4.jpg",
+    "/img/2_1.jpg",
+    "/img/2_2.jpg",
+    "/img/2_3.jpg",
+    "/img/2_4.jpg",
+    "/img/2_5.jpg",
+    "/img/3_1.jpg",
+    "/img/3_2.jpg",
+    "/img/3_3.jpg",
+    "/img/3_4.jpg",
+    "/img/4_1.jpg",
+    "/img/4_2.jpg",
+    "/img/4_3.jpg",
+    "/img/4_4.jpg",
+    "/img/5_1.jpg",
+    "/img/5_2.jpg",
+    "/img/5_3.jpg",
+    "/img/5_4.jpg",
+    "/img/6_1.jpg",
+    "/img/6_2.jpg",
+    "/img/6_3.jpg",
+    "/img/6_4.jpg",
+    "/img/101.jpg",
+    "/img/102.jpg",
+    "/img/103.jpg",
+    "/img/103_1.jpg",
+    "/img/103_4.jpg",
+  ];
+
   return (
     <div className="home-page bg-slate-50/80">
       <section className="home-hero shadow-[0_24px_80px_rgba(15,23,42,0.06)]">
@@ -86,46 +119,97 @@ export default async function Home() {
                 >
                   Xem dự án tiêu biểu
                 </Link>
+                <Link
+                  href="#all-door-collection"
+                  className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
+                >
+                  Xem 30 mẫu cửa
+                </Link>
+              </div>
+              <div className="mt-3 md:hidden">
+                <Link
+                  href="/admin"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50"
+                >
+                  Trang quản trị
+                </Link>
               </div>
 
-              <div className="mt-6 grid gap-2 sm:gap-3 sm:grid-cols-2">
+              <div className="mt-6 grid gap-3 md:hidden">
                 {[
-                  { value: "100+", label: "Mẫu thiết kế" },
-                  { value: "100+", label: "Dự án hoàn thiện" },
-                  { value: "24h", label: "Phản hồi nhanh" },
+                  {
+                    value: "100+",
+                    label: "Mẫu thiết kế",
+                    detail: "Độ bền cao, bảo trì dễ dàng",
+                  },
+                  {
+                    value: "100+",
+                    label: "Dự án hoàn thiện",
+                    detail: "Phong cách decor đồng bộ",
+                  },
+                  {
+                    value: "24h",
+                    label: "Phản hồi nhanh",
+                    detail: "Tư vấn và báo giá trong 24h",
+                  },
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="stat-pill px-4 py-3 sm:px-5 sm:py-4"
+                    className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm"
                   >
-                    <div className="text-xl font-semibold tabular-nums text-slate-950 sm:text-2xl">
+                    <div className="text-xl font-semibold text-slate-950 sm:text-2xl">
                       {item.value}
                     </div>
-                    <div className="stat-pill-label mt-1 sm:mt-2 text-xs sm:text-sm">
+                    <div className="mt-1 text-xs uppercase tracking-[0.24em] text-amber-500 sm:text-sm">
                       {item.label}
+                    </div>
+                    <div className="mt-3 text-sm leading-relaxed text-slate-600">
+                      {item.detail}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {[
-                  { k: "Vận hành êm ái", v: "Độ bền cao, bảo trì dễ dàng" },
-                  { k: "Hoàn thiện mặt tiền", v: "Phong cách decor đồng bộ" },
-                  { k: "Giải pháp nhanh", v: "Tư vấn và báo giá trong 24h" },
-                ].map((item) => (
-                  <div
-                    key={item.k}
-                    className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition-transform duration-300 hover:-translate-y-1"
-                  >
-                    <div className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-500">
-                      {item.k}
+              <div className="hidden md:block">
+                <div className="mt-6 grid gap-2 sm:gap-3 sm:grid-cols-2">
+                  {[
+                    { value: "100+", label: "Mẫu thiết kế" },
+                    { value: "100+", label: "Dự án hoàn thiện" },
+                    { value: "24h", label: "Phản hồi nhanh" },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="stat-pill px-4 py-3 sm:px-5 sm:py-4"
+                    >
+                      <div className="text-xl font-semibold tabular-nums text-slate-950 sm:text-2xl">
+                        {item.value}
+                      </div>
+                      <div className="stat-pill-label mt-1 sm:mt-2 text-xs sm:text-sm">
+                        {item.label}
+                      </div>
                     </div>
-                    <div className="mt-2 text-sm leading-relaxed text-slate-600">
-                      {item.v}
+                  ))}
+                </div>
+
+                <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {[
+                    { k: "Vận hành êm ái", v: "Độ bền cao, bảo trì dễ dàng" },
+                    { k: "Hoàn thiện mặt tiền", v: "Phong cách decor đồng bộ" },
+                    { k: "Giải pháp nhanh", v: "Tư vấn và báo giá trong 24h" },
+                  ].map((item) => (
+                    <div
+                      key={item.k}
+                      className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition-transform duration-300 hover:-translate-y-1"
+                    >
+                      <div className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-500">
+                        {item.k}
+                      </div>
+                      <div className="mt-2 text-sm leading-relaxed text-slate-600">
+                        {item.v}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -184,6 +268,47 @@ export default async function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section
+        id="all-door-collection"
+        className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
+      >
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-500">
+              Tất cả mẫu cửa cổng
+            </p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              Tham khảo 30 mẫu cửa đẹp
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+              Xem toàn bộ mẫu cửa cổng, thiết kế decor, cổng tự động và cổng
+              trượt trong một bộ sưu tập đầy đủ.
+            </p>
+          </div>
+          <Link
+            href="#all-door-collection"
+            className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+          >
+            Xem 30 ảnh mẫu
+          </Link>
+        </div>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {doorGalleryImages.map((src, idx) => (
+            <div
+              key={`${src}-${idx}`}
+              className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm"
+            >
+              <img
+                src={src}
+                alt={`Mẫu cửa ${idx + 1}`}
+                className="h-44 w-full object-cover sm:h-40 lg:h-36"
+              />
+            </div>
+          ))}
         </div>
       </section>
 
