@@ -53,6 +53,12 @@ export default async function SiteHeader() {
               Sản phẩm
             </Link>
             <Link
+              href="/video"
+              className="text-sm font-medium text-slate-950 hover:text-slate-700"
+            >
+              Video thực tế
+            </Link>
+            <Link
               href="/blog"
               className="text-sm font-medium text-slate-950 hover:text-slate-700"
             >

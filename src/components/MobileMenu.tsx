@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/", label: "Trang chủ" },
   { href: "/san-pham", label: "Sản phẩm" },
   { href: "/du-an", label: "Dự án" },
+  { href: "/video", label: "Video thực tế" },
   { href: "/blog", label: "Góc tư vấn" },
   { href: "/gioi-thieu", label: "Giới thiệu" },
   { href: "/lien-he", label: "Liên hệ" },
@@ -58,7 +59,11 @@ export function MobileMenu({ categories }: { categories: CategoryLite[] }) {
       </button>
 
       {open ? (
-        <div className="fixed inset-0 z-[120] md:hidden" role="dialog" aria-modal="true">
+        <div
+          className="fixed inset-0 z-[120] md:hidden"
+          role="dialog"
+          aria-modal="true"
+        >
           <button
             type="button"
             className="absolute inset-0 bg-slate-900/50 backdrop-blur-[2px]"
@@ -78,24 +83,45 @@ export function MobileMenu({ categories }: { categories: CategoryLite[] }) {
                 className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-600 hover:bg-slate-100"
                 aria-label="Đóng"
               >
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
 
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-3">
               <div className="rounded-2xl bg-slate-50 px-3 py-3 text-xs text-slate-600">
-                <a href={`tel:${BRAND.phone.replace(/\s+/g, "")}`} className="block font-medium text-slate-900">
+                <a
+                  href={`tel:${BRAND.phone.replace(/\s+/g, "")}`}
+                  className="block font-medium text-slate-900"
+                >
                   {BRAND.phone}
                 </a>
-                <a href={`mailto:${BRAND.email}`} className="mt-1 block text-amber-800">
+                <a
+                  href={`mailto:${BRAND.email}`}
+                  className="mt-1 block text-amber-800"
+                >
                   {BRAND.email}
                 </a>
-                <p className="mt-2 leading-relaxed text-slate-500">{BRAND.address}</p>
+                <p className="mt-2 leading-relaxed text-slate-500">
+                  {BRAND.address}
+                </p>
               </div>
 
-              <nav className="mt-4 flex flex-col gap-1" aria-label="Điều hướng chính">
+              <nav
+                className="mt-4 flex flex-col gap-1"
+                aria-label="Điều hướng chính"
+              >
                 {navLinks.map((item) => (
                   <Link
                     key={item.href}

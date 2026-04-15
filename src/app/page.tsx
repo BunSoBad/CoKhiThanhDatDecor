@@ -311,6 +311,15 @@ export default async function Home() {
             </div>
           </div>
         </div>
+        <div></div>
+        <div className="flex justify-center mt-[20px]">
+          <Link
+            href="/video"
+            className="inline-flex items-center justify-center active:scale-95 rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-amber-700"
+          >
+            Xem thêm video thực tế
+          </Link>
+        </div>
       </section>
       <section className="section-lux mx-auto max-w-[min(96rem,calc(100%-2rem))] px-4 py-14 mt-6 md:mt-8 animate-slide-up">
         <SectionTitle
