@@ -84,7 +84,7 @@ export default function RootLayout({
             "@type": "LocalBusiness",
             name: BRAND.name,
             description:
-              "Thiết kế, gia công và thi công cổng cửa tự động, thông minh và decor theo kích thước thực tế.",
+              "Thiết kế, thi công và lắp đặt cổng cửa tự động, thông minh và decor theo kích thước thực tế.",
             url: `https://${BRAND.website}`,
             telephone: BRAND.phone,
             email: BRAND.email,

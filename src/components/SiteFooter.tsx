@@ -14,7 +14,7 @@ export default async function SiteFooter() {
               {BRAND.name}
             </div>
             <div className="mt-4 break-words text-sm leading-relaxed text-slate-300">
-              Thiết kế, gia công và thi công cổng cửa theo nhu cầu thực tế. Nhận
+              Thiết kế, thi công và lắp đặt cổng cửa theo nhu cầu thực tế. Nhận
               tư vấn và báo giá nhanh.
             </div>
             <Link
@@ -148,6 +148,16 @@ export default async function SiteFooter() {
             >
               Chính sách
             </Link>
+          </div>
+          <div className="text-[10px] tracking-wider text-slate-500 italic">
+            <a
+              href="https://www.facebook.com/hieu.bun.2005" // <-- Thay link FB của Hiếu vào đây
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] tracking-wider text-slate-500 italic hover:text-blue-400 transition-colors duration-300"
+            >
+              by: <span className="font-medium">xuân hiếu</span>
+            </a>
           </div>
         </div>
       </div>
