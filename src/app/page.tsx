@@ -9,6 +9,7 @@ import SectionTitle from "@/components/SectionTitle";
 import ProductCard from "@/components/ProductCard";
 import ProjectCard from "@/components/ProjectCard";
 import { HeroCarousel } from "@/components/HeroCarousel";
+import { MobileAutoCarousel } from "@/components/MobileAutoCarousel";
 
 export const metadata = {
   title: `${BRAND.name} | Cổng cửa tự động, thông minh, decor`,
@@ -48,30 +49,52 @@ export default async function Home() {
     <div className="bg-white">
       {/* Mobile hero carousel - prominent at top */}
       <div className="lg:hidden">
-        <div className="relative w-full">
-          <HeroCarousel
+        <div className="relative w-full px-4 pt-4">
+          <MobileAutoCarousel
             images={[
               {
-                url: products[0]?.heroImageUrl ?? "/img/logo.jpg",
+                url:
+                  products[0]?.heroImageUrl ||
+                  projects[0]?.coverImageUrl ||
+                  "/img/101.jpg",
                 alt: products[0]?.nameVi ?? "Hình ảnh sản phẩm",
               },
               {
-                url: products[1]?.heroImageUrl ?? "/img/logo.jpg",
+                url:
+                  products[1]?.heroImageUrl ||
+                  projects[1]?.coverImageUrl ||
+                  "/img/102.jpg",
                 alt: products[1]?.nameVi ?? "Hình ảnh sản phẩm",
               },
               {
-                url: products[2]?.heroImageUrl ?? "/img/logo.jpg",
+                url:
+                  products[2]?.heroImageUrl ||
+                  projects[2]?.coverImageUrl ||
+                  "/img/103.jpg",
                 alt: products[2]?.nameVi ?? "Hình ảnh sản phẩm",
               },
               {
-                url: projects[4]?.coverImageUrl ?? "/img/logo.jpg",
+                url:
+                  projects[3]?.coverImageUrl ||
+                  products[0]?.heroImageUrl ||
+                  "/img/4_1.jpg",
+                alt: projects[3]?.nameVi ?? "Hình ảnh dự án",
+              },
+              {
+                url:
+                  projects[4]?.coverImageUrl ||
+                  products[1]?.heroImageUrl ||
+                  "/img/5_1.jpg",
                 alt: projects[4]?.nameVi ?? "Hình ảnh dự án",
               },
               {
-                url: projects[5]?.coverImageUrl ?? "/img/logo.jpg",
+                url:
+                  projects[5]?.coverImageUrl ||
+                  products[2]?.heroImageUrl ||
+                  "/img/6_1.jpg",
                 alt: projects[5]?.nameVi ?? "Hình ảnh dự án",
               },
-            ].filter((img) => img.url !== "/img/logo.jpg")}
+            ]}
           />
         </div>
       </div>
