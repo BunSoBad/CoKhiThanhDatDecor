@@ -1,18 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { BRAND } from "@/lib/brand";
-
-export const metadata = {
-  title: `Tất Cả Mẫu Cửa Cổng | ${BRAND.name}`,
-  description:
-    "Xem bộ sưu tập các mẫu cửa cổng đẹp: cổng tự động, cổng thông minh, cấu cửa decor.",
-  // Thêm OpenGraph để tối ưu chia sẻ mạng xã hội
-  openGraph: {
-    title: `Tất Cả Mẫu Cửa Cổng | ${BRAND.name}`,
-    description: "Khám phá các mẫu cửa cổng hiện đại nhất.",
-    images: ["/img/1_1.jpg"],
-  },
-};
+import { useState } from "react";
 
 const doorGalleryImages = [
   "/img/50_1.jpg",
@@ -53,89 +44,534 @@ const doorGalleryImages = [
   "/img/50_36.jpg",
 ];
 
+// Thông số kỹ thuật các mẫu cửa
+const doorSpecifications = [
+  {
+    model: 1,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 ốp thép CNC 5li sơn tĩnh điện, thép CNC 3li, ốp gỗ nhựa composite 2 mặt ngoài trời",
+    price: "3.200.000/m2",
+    material: "Thép sơn tĩnh điện, Nhôm basi, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 2,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 ốp thép CNC 5li sơn tĩnh điện, thép đan ô 3li, ốp gỗ composite 2 mặt ngoài trời",
+    price: "3.500.000/m2",
+    material: "Thép sơn tĩnh điện, Nhôm basi, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 3,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 ốp thép CNC 5li sơn tĩnh điện, thép CNC 3li, ốp gỗ nhựa composite 2 mặt ngoài trời",
+    price: "3.200.000/m2",
+    material: "Thép sơn tĩnh điện, Nhôm basi, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 4,
+    description:
+      "Khung 50x50x1.4 kết hợp 13x26x1.4 ốp thép CNC 3li sơn tĩnh điện, ốp gỗ nhựa composite 2 mặt ngoài trời",
+    price: "3.200.000/m2",
+    material: "Thép sơn tĩnh điện, Nhôm basi, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 5,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 ốp thép CNC 5li sơn tĩnh điện, thép CNC 3li, ốp gỗ nhựa composite 2 mặt ngoài trời",
+    price: "3.200.000/m2",
+    material: "Thép sơn tĩnh điện, Nhôm basi, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 6,
+    description:
+      "Khung sử dụng thép 40x80x1.4 kết hợp đan 20x40x1.4, ốp thép CNC dày 2li sơn tĩnh điện và ốp gỗ nhựa composite 1 mặt ngoài trời.",
+    price: "2.300.000/m2",
+    material: "Thép sơn tĩnh điện, Nhôm basi, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "Màu Teak",
+    accessories: "Bản lề cối xoay, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 7,
+    description:
+      "Khung 40x80x1.4 đan 13x26x1.4 ốp thép sơn tĩnh điện, núm sắt sơn nhũ vàng, ốp gỗ nhựa composite 1 mặt ngoài trời.",
+    price: "2.200.000/m2",
+    material: "Thép sơn tĩnh điện, Nhôm basi, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Teak",
+    accessories: "Bản lề cối xoay, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 8,
+    description: "Khung 40x40x1.4 đan 40x40x1.4 ốp thép tấm 2li sơn tĩnh điện.",
+    price: "2.400.000/m2",
+    material: "Thép sơn tĩnh điện",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Xám Ghi",
+    accessories: "Bản lề cối xoay, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 9,
+    description:
+      "Khung 40x80x1.4 đan 13x26x1.4 ốp thép sơn tĩnh điện, núm sắt sơn nhũ vàng, ốp gỗ nhựa composite 1 mặt ngoài trời",
+    price: "2.100.000/m2",
+    material: "Thép sơn tĩnh điện, Nhôm basi, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Teak",
+    accessories: "Bản lề cối xoay, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 10,
+    description:
+      "Khung 50x50x1.4 đan kết hợp 50x100x1.4 25x50x1.4 ốp thép tấm 2li sơn tĩnh điện",
+    price: "2.600.000/m2",
+    material: "Thép sơn tĩnh điện",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "Anthracite Grey",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 11,
+    description:
+      "Khung 50x100x1.4 đan 25x50x1.4 ốp thép CNC 2li sơn tĩnh điện, núm sắt sơn nhũ vàng, ốp gỗ nhựa composite 1 mặt ngoài Trời",
+    price: "2.300.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Teak",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 12,
+    description:
+      "Khung 40x80x1.4 đan 20x40x1.4 ốp thép CNC 2li sơn tĩnh điện, ốp gỗ nhựa composite 1 mặt ngoài Trời",
+    price: "2.100.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 13,
+    description:
+      "Khung 50x50x1.4 đan kết hợp 50x100x1.4 25x50x1.4 ốp thép tấm 2li sơn tĩnh điện",
+    price: "2.600.000/m2",
+    material: "Thép sơn tĩnh điện",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "Anthracite Grey",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 14,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 ốp thép CNC 5 li sơn tĩnh điện, thép CNC 3li ốp gỗ nhựa composite 2 mặt ngoài Trời",
+    price: "3.200.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 15,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 ốp thép CNC 5li sơn tĩnh điện, thép CNC 3li, ốp gỗ nhựa composite 2 mặt ngoài trời",
+    price: "3.200.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 16,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 ốp thép CNC 5li sơn tĩnh điện, ốp gỗ nhựa composite 2 mặt ngoài trời",
+    price: "3.200.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Depwood",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 17,
+    description:
+      "Khung thép 50x50x1.4 đan thép 25x50x1.4, ốp thép tấm CNC 2li sơn tĩnh điện",
+    price: "2.500.000/m2",
+    material: "Thép sơn tĩnh điện",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Xám Ghi",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 18,
+    description:
+      "Khung thép 50x50x1.4 kết hợp 50x100x1.4 đan thép 25x50x1.4, ốp thép tấm CNC 2li sơn tĩnh điện",
+    price: "2.500.000/m2",
+    material: "Thép sơn tĩnh điện",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "Anthracite Grey",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 19,
+    description:
+      "Khung thép 50x50x1.4 kết hợp 50x100x1.4 đan thép 25x50x1.4, ốp thép tấm CNC 2li sơn tĩnh điện",
+    price: "2.500.000/m2",
+    material: "Thép sơn tĩnh điện",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Xám Ghi",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 20,
+    description:
+      "Khung 50x50x1,4 kết hợp 13x26x1,4 ốp thép CNC 3li sơn tĩnh điện, ốp gỗ nhựa composite 2 mặt ngoài trời",
+    price: "3.200.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 21,
+    description:
+      "Khung thép 50x50x1.4 đan thép 25x50x1.4 ốp thép tấm CNC 2li sơn tĩnh điện",
+    price: "2.500.000/m2",
+    material: "Thép sơn tĩnh điện",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "Anthracite Grey",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 22,
+    description:
+      "Khung 40x80x1.4 đan 13x26x1.4 ốp thép sơn tĩnh điện, núm sắt sơn nhũ vàng ốp gỗ nhựa composite 1 mặt ngoài trời",
+    price: "2.300.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Teak",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 23,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 ốp thép CNC 5li sơn tĩnh điện, thép CNC 2li ốp gỗ nhựa composite 2 mặt ngoài trời",
+    price: "3.200.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Depwood",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 24,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 ốp thép CNC 5li sơn tĩnh điện, thép đan ô 3li, ốp gỗ composite 2 mặt phủi ASA ngoài trời",
+    price: "3.500.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite phủ ASA",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 25,
+    description:
+      "Khung 40x80x1.4 kết hợp 20x40 đan thép CNC 3li, ốp gỗ lam sóng 1 mặt",
+    price: "2.200.000/m2",
+    material: "Thép sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Teak",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 26,
+    description:
+      "Cổng sắt ốp gỗ nhựa (Khung thép sơn tĩnh điện kết hợp nan gỗ nhựa composite)",
+    price: "2.200.000/m2",
+    material: "Sắt sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 27,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 viền thép 5li sơn tĩnh điện, ốp gỗ nhựa composite ngoài trời lam sóng phủ ASA 2 mặt",
+    price: "3.500.000/m2",
+    material: "Sắt sơn tĩnh điện, Gỗ nhựa composite phủ ASA",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 28,
+    description:
+      "Khung hộp 50x100x1.4 đan 25x50x1.5 ốp gỗ nhựa composite phủ ASA ngoài trời nhập khẩu",
+    price: "2.400.000/m2",
+    material: "Sắt sơn tĩnh điện, Gỗ nhựa composite nhập khẩu",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 29,
+    description:
+      "Khung 30x60x1.4 đan 25x50x1.4 viền thép 5li, ốp thép tấm 2li sơn tĩnh điện, ốp gỗ nhựa composite ngoài trời phủ ASA 2 mặt",
+    price: "3.200.000/m2",
+    material: "Sắt sơn tĩnh điện, Gỗ nhựa composite phủ ASA",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 30,
+    description: "Khung 40x40x1.4 đan 40x40x1.4 ốp thép tấm 2li sơn tĩnh điện",
+    price: "2.400.000/m2",
+    material: "Sắt sơn tĩnh điện",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Xám Ghi",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 31,
+    description: "Khung 40x80x1.4 đan 14x14x1.2 ốp thép CNC 3li sơn tĩnh điện",
+    price: "2.100.000/m2",
+    material: "Sắt sơn tĩnh điện, Thép CNC",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Xám Ghi",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 32,
+    description:
+      "Khung 40x80x1.4 đan 13x26x1.4 ốp thép sơn tĩnh điện, núm sắt sơn nhũ vàng ốp gỗ nhựa composite 1 mặt ngoài trời",
+    price: "2.300.000/m2",
+    material: "Sắt sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Teak",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 33,
+    description: "Khung 40x80x1.4 đan 14x14x1.2 ốp thép CNC 3li sơn tĩnh điện",
+    price: "2.300.000/m2",
+    material: "Sắt sơn tĩnh điện, Thép CNC",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Xám Ghi",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 34,
+    description:
+      "Khung 40x80x1.4 đan 13x26x1.4 ốp thép sơn tĩnh điện, núm sắt sơn nhũ vàng ốp gỗ nhựa composite 1 mặt ngoài trời",
+    price: "2.200.000/m2",
+    material: "Sắt sơn tĩnh điện, Gỗ nhựa composite",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Teak",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 35,
+    description: "Khung 40x80x1.4 đan 20x40x1.2 ốp thép CNC 3li sơn tĩnh điện",
+    price: "2.300.000/m2",
+    material: "Sắt sơn tĩnh điện, Thép CNC",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Xám Ghi",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+  {
+    model: 36,
+    description:
+      "Khung 6x60x1.4 cánh 30x60x1.4 đan 25x50x1.1 ốp thép đan ô 3li, ốp gỗ composite 2 mặt phủ ASA ngoài trời",
+    price: "3.500.000/m2",
+    material: "Sắt sơn tĩnh điện, Gỗ nhựa composite phủ ASA",
+    motor: "Tùy chọn (Âm sàn/Cánh tay đòn)",
+    color: "màu Walnut",
+    accessories: "Bản lề cối xoay inox304, chốt cửa, tay nắm cửa.",
+  },
+];
+
+interface SelectedDoor {
+  index: number;
+  src: string;
+}
+
 export default function DoorCollectionPage() {
+  const [selectedDoor, setSelectedDoor] = useState<SelectedDoor | null>(null);
+  const spec = selectedDoor ? doorSpecifications[selectedDoor.index] : null;
+
   return (
-    <div className="min-h-screen bg-slate-50/80">
-      {/* Tăng max-w ở đây để header cân xứng với lưới ảnh to bên dưới */}
-      <section className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <div className="flex items-center gap-2 text-amber-600">
-              <span className="inline-block h-2 w-2 rounded-full bg-amber-500"></span>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em]">
-                Tất cả mẫu cửa cổng
-              </p>
-            </div>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-              Bộ sưu tập các mẫu cửa đẹp
+    <div className="min-h-screen bg-white font-sans text-slate-900 transition-colors duration-100">
+      {/* 1. Header - Tinh chỉnh lại cho thanh thoát và vào form */}
+      <header className="bg-white border-b border-slate-100 sticky top-0 z-40">
+        <div className="mx-auto max-w-7xl px-6 py-8 flex flex-col md:flex-row items-end justify-between">
+          <div className="space-y-1">
+            {/* Giảm xuống font-bold hoặc font-extrabold, dùng text-slate-800 cho dịu mắt */}
+            <h1 className="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight leading-none">
+              Bộ sưu tập mẫu cửa
             </h1>
+            {/* Dòng text phụ làm mỏng và nhẹ nhàng hơn */}
+            <p className="text-[11px] font-medium text-slate-400 uppercase tracking-[0.25em]">
+              Thiết kế hiện đại • Thành Đạt Decor
+            </p>
           </div>
+
           <Link
             href="/"
-            className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
+            className="mt-4 md:mt-0 flex items-center gap-1.5 text-[11px] font-bold text-slate-400 hover:text-amber-600 transition-colors uppercase tracking-widest"
           >
-            ← Quay lại
+            <svg
+              className="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            Trang chủ
           </Link>
         </div>
-      </section>
-      {/* 1. Thay max-w-7xl bằng max-w-[1440px] (hoặc max-w-[1600px] nếu muốn to hơn nữa)
-          2. Sửa grid-cols: bỏ 2xl:grid-cols-5, giữ tối đa là 4 cột
-      */}
-      <section className="mx-auto max-w-[1600px] px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      </header>
+
+      {/* 2. Grid Card */}
+      <main className="mx-auto max-w-7xl px-6 py-10">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {doorGalleryImages.map((src, idx) => (
             <div
-              key={`${src}-${idx}`}
-              className="group overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+              key={idx}
+              onClick={() => setSelectedDoor({ index: idx, src })}
+              className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-100 bg-white transition-all duration-100 hover:shadow-xl hover:-translate-y-1"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+              <div
+                className="relative overflow-hidden bg-slate-50"
+                style={{ aspectRatio: "4 / 5" }}
+              >
                 <img
                   src={src}
                   alt={`Mẫu cửa ${idx + 1}`}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-100 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
               </div>
-              <div className="p-5">
-                {" "}
-                {/* Tăng padding cho card to nhìn sang hơn */}
-                <p className="text-base font-bold text-slate-800">
-                  Mã cửa: {idx + 1}
+              <div className="p-4 bg-white">
+                <h3 className="font-bold text-slate-800 text-sm">
+                  Mẫu cửa hiện đại #{idx + 1}
+                </h3>
+                <p className="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">
+                  Premium Collection
                 </p>
               </div>
             </div>
           ))}
         </div>
-      </section>
+      </main>
 
-      <footer className="bg-gradient-to-r from-amber-50 to-orange-50 py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-[2.5rem] border border-amber-200 bg-white/90 p-8 text-center shadow-xl shadow-amber-500/5 backdrop-blur-md sm:p-16">
-            <h2 className="text-3xl font-bold text-slate-950 sm:text-4xl">
-              Bạn tìm thấy mẫu ưng ý chưa?
-            </h2>
-            <p className="mt-4 text-lg text-slate-600">
-              Đừng ngần ngại liên hệ để nhận tư vấn kỹ thuật và báo giá ưu đãi
-              nhất.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/nhan-bao-gia"
-                className="inline-flex items-center justify-center rounded-full bg-amber-600 px-8 py-4 text-base font-bold text-white transition hover:bg-amber-700 hover:scale-105 active:scale-95"
-              >
-                Nhận báo giá ngay
-              </Link>
-              <Link
-                href="https://zalo.me/0967105883"
-                target="_blank"
-                className="inline-flex items-center justify-center rounded-full border border-amber-600 px-8 py-4 text-base font-bold text-amber-700 transition hover:bg-amber-50"
-              >
-                Tư vấn qua Zalo
-              </Link>
+      {/* 3. Modal tối ưu cho Mobile */}
+      {selectedDoor && spec && (
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-0 sm:p-4"
+          onClick={() => setSelectedDoor(null)}
+        >
+          <div
+            className="relative w-full max-w-5xl h-[90vh] sm:h-auto overflow-y-auto sm:overflow-hidden rounded-t-3xl sm:rounded-3xl bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Nút đóng cố định trên mobile */}
+            <button
+              onClick={() => setSelectedDoor(null)}
+              className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/20 text-white backdrop-blur-md sm:bg-slate-100 sm:text-slate-600"
+            >
+              ✕
+            </button>
+
+            <div className="grid grid-cols-1 md:grid-cols-12">
+              {/* PHẦN ĐIỀU CHỈNH: Ép tỉ lệ 4:5 cho ảnh trên Mobile */}
+              <div className="md:col-span-5 bg-slate-50">
+                <div
+                  className="relative w-full"
+                  style={{ aspectRatio: "4 / 5" }}
+                >
+                  <img
+                    src={selectedDoor.src}
+                    alt={spec.model.toString()}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Nội dung: Giữ nguyên bố cục của bạn */}
+              <div className="md:col-span-7 p-6 sm:p-10 flex flex-col">
+                <div className="mb-4">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+                    Mẫu Cửa #{spec.model}
+                  </h2>
+                  <div className="h-1 w-10 bg-[#f59e0b] mt-2 rounded-full"></div>
+                </div>
+
+                <div className="mb-6 p-4 rounded-xl bg-slate-50 text-[13px] sm:text-sm leading-relaxed text-slate-600 border border-slate-100">
+                  {spec.description}
+                </div>
+
+                {/* Grid thông số: Giữ nguyên 2 cột */}
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-8">
+                  {[
+                    { label: "Báo giá", value: spec.price },
+                    { label: "Vật liệu", value: spec.material },
+                    { label: "Motor", value: spec.motor },
+                    { label: "Màu sắc", value: spec.color },
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className="p-3 rounded-xl border border-slate-100 bg-white"
+                    >
+                      <p className="text-[9px] font-bold uppercase text-slate-400 mb-1 tracking-wider">
+                        {item.label}
+                      </p>
+                      <p className="text-[12px] sm:text-sm font-bold text-slate-800 leading-tight">
+                        {item.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Nút bấm */}
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 mt-auto">
+                  <Link
+                    href="/nhan-bao-gia"
+                    className="flex items-center justify-center rounded-xl bg-[#f59e0b] px-6 py-4 text-sm font-bold text-white transition-transform active:scale-95"
+                  >
+                    Nhận báo giá ngay
+                  </Link>
+
+                  <Link
+                    href={`https://zalo.me/0967105883`}
+                    target="_blank"
+                    className="flex items-center justify-center rounded-xl border-2 border-[#f59e0b] px-6 py-4 text-sm font-bold text-[#f59e0b] transition-transform active:scale-95"
+                  >
+                    Tư vấn qua Zalo
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </footer>
+      )}
     </div>
   );
 }

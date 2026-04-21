@@ -119,6 +119,13 @@ const videos: Video[] = [
     youtubeId: "J-9hslpv9To",
     thumbnail: "/img/1_1.jpg",
   },
+  {
+    id: 12,
+    title: "Cửa không chỉ để đóng/mở – mà để thể hiện chất riêng",
+    description: "",
+    youtubeId: "ZM-LovFtZCk",
+    thumbnail: "/img/1_1.jpg",
+  },
 ];
 
 export default async function VideoPage() {
