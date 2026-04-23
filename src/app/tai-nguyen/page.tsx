@@ -531,7 +531,7 @@ export default function DoorCollectionPage() {
                 {/* Grid thông số: Giữ nguyên 2 cột */}
                 <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-8">
                   {[
-                    { label: "Báo giá", value: spec.price },
+                    { label: "Giá Tham Khảo", value: spec.price },
                     { label: "Vật liệu", value: spec.material },
                     { label: "Motor", value: spec.motor },
                     { label: "Màu sắc", value: spec.color },

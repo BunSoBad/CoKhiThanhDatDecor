@@ -1,0 +1,7 @@
+g:\2. Test web\site\
+├── app/api/         (hoặc app/actions/)
+├── app/admin/       
+└── .env.localg:\2. Test web\site\
+├── app/api/         (hoặc app/actions/)
+├── app/admin/       
+└── .env.local
